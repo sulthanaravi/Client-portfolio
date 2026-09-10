@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Play } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const projects = [
   // ================= ACTING CONTENT =================
@@ -8,20 +8,18 @@ const projects = [
   {
     id: 1,
     category: "ACTING CONTENT",
-    title: "Acting Performance",
-    description:
-      "A performance-focused video showcasing acting, expressions, and storytelling through visual direction.",
     type: "video",
+    title: "Acting Performance 01",
+    description: "Acting performance and creative visual content.",
     video: "/projects/acting-1.MOV",
   },
 
   {
     id: 2,
     category: "ACTING CONTENT",
-    title: "Character Performance",
-    description:
-      "A character-based acting project focused on emotion, screen presence, and natural performance.",
     type: "video",
+    title: "Acting Performance 02",
+    description: "Acting performance and creative visual content.",
     video: "/projects/acting-2.MOV",
   },
 
@@ -30,151 +28,28 @@ const projects = [
   {
     id: 3,
     category: "CONTENT WORKS",
-    title: "Social Media Edit",
-    description:
-      "A short-form content edit created for social media with engaging cuts, pacing, and visual storytelling.",
     type: "video",
+    title: "Content Work 01",
+    description: "Creative video editing and content production.",
     video: "/projects/content-1.MOV",
   },
 
   {
     id: 4,
     category: "CONTENT WORKS",
-    title: "Creative Content Edit",
-    description:
-      "A creative video edit combining storytelling, transitions, music, and visual elements.",
     type: "video",
+    title: "Content Work 02",
+    description: "Creative video editing and content production.",
     video: "/projects/content-2.MOV",
   },
 
   {
     id: 5,
     category: "CONTENT WORKS",
-    title: "Branding Content",
-    description:
-      "A promotional content piece designed to communicate a brand idea through visual storytelling.",
     type: "video",
+    title: "Content Work 03",
+    description: "Creative video editing and content production.",
     video: "/projects/content-3.MOV",
-  },
-
-  {
-    id: 6,
-    category: "CONTENT WORKS",
-    title: "Reels Edit",
-    description:
-      "A dynamic short-form video created for social media platforms.",
-    type: "video",
-    video: "/projects/content-4.MOV",
-  },
-
-  {
-    id: 7,
-    category: "CONTENT WORKS",
-    title: "Promotional Video",
-    description:
-      "A promotional video focused on creative visuals and engaging storytelling.",
-    type: "video",
-    video: "/projects/content-5.MOV",
-  },
-
-  {
-    id: 8,
-    category: "CONTENT WORKS",
-    title: "Creative Reel",
-    description:
-      "A creative reel combining transitions, music, effects, and storytelling.",
-    type: "video",
-    video: "/projects/content-6.MOV",
-  },
-
-  {
-    id: 9,
-    category: "CONTENT WORKS",
-    title: "Storytelling Edit",
-    description:
-      "A storytelling-focused edit created through visuals, pacing, and sound.",
-    type: "video",
-    video: "/projects/content-7.MOV",
-  },
-
-  {
-    id: 10,
-    category: "CONTENT WORKS",
-    title: "Digital Content",
-    description:
-      "A creative digital content project designed for audience engagement.",
-    type: "video",
-    video: "/projects/content-8.MOV",
-  },
-
-  {
-    id: 11,
-    category: "CONTENT WORKS",
-    title: "Social Content",
-    description:
-      "An engaging social media video created with creative editing techniques.",
-    type: "video",
-    video: "/projects/content-9.MOV",
-  },
-
-  {
-    id: 12,
-    category: "CONTENT WORKS",
-    title: "Visual Story",
-    description:
-      "A visual storytelling project combining creative shots and editing.",
-    type: "video",
-    video: "/projects/content-10.MOV",
-  },
-
-  {
-    id: 13,
-    category: "CONTENT WORKS",
-    title: "Short Form Content",
-    description:
-      "A short-form video created with engaging cuts and dynamic pacing.",
-    type: "video",
-    video: "/projects/content-11.MOV",
-  },
-
-  {
-    id: 14,
-    category: "CONTENT WORKS",
-    title: "Creative Video",
-    description:
-      "A creative video edit focused on visuals, transitions, and storytelling.",
-    type: "video",
-    video: "/projects/content-12.MOV",
-  },
-
-  {
-    id: 15,
-    category: "CONTENT WORKS",
-    title: "Content Campaign",
-    description:
-      "A creative content piece developed for digital media and audience engagement.",
-    type: "video",
-    video: "/projects/content-13.MOV",
-  },
-
-  {
-    id: 16,
-    category: "CONTENT WORKS",
-    title: "Media Edit",
-    description:
-      "A polished media edit combining creative visuals, music, and pacing.",
-    type: "video",
-    video: "/projects/content-14.MOV",
-  },
-
-  {
-    id: 17,
-    category: "CONTENT WORKS",
-    title: "Final Content Work",
-    description:
-      "A complete content project showcasing creative editing and visual storytelling.",
-    type: "video",
-    video: "/projects/content-15.MOV",
   },
 ];
 
@@ -189,27 +64,90 @@ function Projects() {
       ? projects
       : projects.filter((project) => project.category === activeFilter);
 
+  // =====================================================
+  // OPEN PROJECT
+  // =====================================================
+
+  const openProject = (project) => {
+    setSelectedProject(project);
+  };
+
+  // =====================================================
+  // CLOSE PROJECT
+  // =====================================================
+
+  const closeProject = () => {
+    setSelectedProject(null);
+  };
+
+  // =====================================================
+  // ESC KEY
+  // =====================================================
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedProject]);
+
+  // =====================================================
+  // BODY SCROLL LOCK
+  // =====================================================
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
   return (
     <section
       id="projects"
       className="
         relative
         overflow-hidden
-        bg-[#111111]
+        bg-[#0f0f0f]
         px-6
         py-20
         text-white
-        transition-colors
-        duration-500
         sm:px-10
         md:px-14
         lg:px-20
         lg:py-28
       "
     >
-      {/* ================= BACKGROUND ================= */}
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.08]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[size:70px_70px]
+        "
+      >
+        {/* Top Line */}
+
         <div
           className="
             absolute
@@ -221,6 +159,8 @@ function Projects() {
             bg-white/10
           "
         />
+
+        {/* Rotating Circle */}
 
         <motion.div
           animate={{
@@ -242,6 +182,8 @@ function Projects() {
             border-white/[0.04]
           "
         />
+
+        {/* Floating Dot */}
 
         <motion.div
           animate={{
@@ -265,10 +207,14 @@ function Projects() {
         />
       </div>
 
-      {/* ================= CONTAINER ================= */}
+      {/* =====================================================
+          MAIN CONTAINER
+      ===================================================== */}
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* ================= HEADER ================= */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        {/* =====================================================
+            HEADER
+        ===================================================== */}
 
         <motion.div
           initial={{
@@ -291,12 +237,29 @@ function Projects() {
           <div className="mb-4 flex items-center gap-4">
             <span className="h-px w-10 bg-white" />
 
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/50">
+            <p
+              className="
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.3em]
+                text-white/50
+              "
+            >
               Selected Work
             </p>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <div
+            className="
+              flex
+              flex-col
+              justify-between
+              gap-8
+              lg:flex-row
+              lg:items-end
+            "
+          >
             <h2
               className="
                 text-5xl
@@ -313,14 +276,24 @@ function Projects() {
               <span className="text-white/25">Works.</span>
             </h2>
 
-            <p className="max-w-md text-sm leading-7 text-white/45 sm:text-base">
+            <p
+              className="
+                max-w-md
+                text-sm
+                leading-7
+                text-white/45
+                sm:text-base
+              "
+            >
               A collection of acting performances, creative edits, and content
               projects crafted through storytelling and visual creativity.
             </p>
           </div>
         </motion.div>
 
-        {/* ================= FILTER ================= */}
+        {/* =====================================================
+            FILTERS
+        ===================================================== */}
 
         <motion.div
           initial={{
@@ -348,6 +321,7 @@ function Projects() {
           {filters.map((filter) => (
             <button
               key={filter}
+              type="button"
               onClick={() => setActiveFilter(filter)}
               className={`
                 rounded-full
@@ -371,12 +345,16 @@ function Projects() {
           ))}
         </motion.div>
 
-        {/* ================= PROJECT GRID ================= */}
+        {/* =====================================================
+            PROJECT GRID
+        ===================================================== */}
 
         <motion.div
           layout
           className="
             grid
+            w-full
+            grid-cols-1
             gap-5
             sm:grid-cols-2
             lg:grid-cols-3
@@ -403,10 +381,11 @@ function Projects() {
                   duration: 0.5,
                   delay: index * 0.06,
                 }}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => openProject(project)}
                 className="
                   group
                   relative
+                  w-full
                   cursor-pointer
                   overflow-hidden
                   rounded-2xl
@@ -419,56 +398,83 @@ function Projects() {
                   hover:border-white/25
                 "
               >
-                {/* ================= VIDEO PREVIEW ================= */}
+                {/* =================================================
+                    VIDEO CARD
+                ================================================= */}
 
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#222222]">
+                <div
+                  className="
+                    relative
+                    aspect-[4/5]
+                    w-full
+                    overflow-hidden
+                    bg-[#222222]
+                  "
+                >
+                  {/* =================================================
+                      LOOPING MUTED VIDEO
+                  ================================================= */}
+
                   <video
                     src={project.video}
+                    autoPlay
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     className="
+                      absolute
+                      inset-0
                       h-full
                       w-full
                       object-cover
-                      opacity-70
-                      transition-all
+                      transition-transform
                       duration-700
                       group-hover:scale-105
-                      group-hover:opacity-100
                     "
-                    onMouseEnter={(e) => e.currentTarget.play()}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.pause();
-                      e.currentTarget.currentTime = 0;
-                    }}
                   />
 
-                  {/* Dark overlay */}
+                  {/* Dark Overlay */}
 
                   <div
                     className="
                       absolute
                       inset-0
-                      bg-gradient-to-t
-                      from-black
-                      via-black/10
-                      to-transparent
-                      opacity-90
+                      bg-black/20
+                      transition-all
+                      duration-500
+                      group-hover:bg-black/10
                     "
                   />
 
-                  {/* Play Icon */}
+                  {/* Large Number */}
+
+                  <div
+                    className="
+                      absolute
+                      left-6
+                      top-6
+                      z-10
+                      text-7xl
+                      font-black
+                      tracking-[-0.08em]
+                      text-white/[0.08]
+                    "
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                  {/* Center Play Button */}
 
                   <div
                     className="
                       absolute
                       left-1/2
                       top-1/2
+                      z-10
                       flex
-                      h-14
-                      w-14
+                      h-16
+                      w-16
                       -translate-x-1/2
                       -translate-y-1/2
                       items-center
@@ -476,8 +482,9 @@ function Projects() {
                       rounded-full
                       border
                       border-white/30
-                      bg-black/30
-                      backdrop-blur-sm
+                      bg-black/50
+                      text-white
+                      backdrop-blur-md
                       transition-all
                       duration-500
                       group-hover:scale-110
@@ -485,28 +492,62 @@ function Projects() {
                       group-hover:text-black
                     "
                   >
-                    <Play className="ml-0.5 h-5 w-5" fill="currentColor" />
+                    <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
                   </div>
 
-                  {/* Project Number */}
+                  {/* Video Label */}
 
-                  <span
+                  <div
                     className="
                       absolute
                       right-5
                       top-5
-                      text-xs
+                      z-10
+                      rounded-full
+                      border
+                      border-white/10
+                      bg-black/40
+                      px-3
+                      py-1.5
+                      text-[8px]
                       font-bold
+                      uppercase
                       tracking-[0.2em]
-                      text-white/50
+                      text-white/70
+                      backdrop-blur-md
                     "
                   >
-                    0{index + 1}
-                  </span>
+                    VIDEO
+                  </div>
+
+                  {/* Bottom Gradient */}
+
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-x-0
+                      bottom-0
+                      z-10
+                      h-1/2
+                      bg-gradient-to-t
+                      from-black
+                      via-black/60
+                      to-transparent
+                    "
+                  />
 
                   {/* Bottom Content */}
 
-                  <div className="absolute inset-x-0 bottom-0 p-5">
+                  <div
+                    className="
+                      absolute
+                      inset-x-0
+                      bottom-0
+                      z-20
+                      p-5
+                    "
+                  >
                     <p
                       className="
                         mb-2
@@ -514,13 +555,20 @@ function Projects() {
                         font-bold
                         uppercase
                         tracking-[0.25em]
-                        text-white/45
+                        text-white/60
                       "
                     >
                       {project.category}
                     </p>
 
-                    <div className="flex items-end justify-between gap-4">
+                    <div
+                      className="
+                        flex
+                        items-end
+                        justify-between
+                        gap-4
+                      "
+                    >
                       <h3
                         className="
                           text-xl
@@ -559,7 +607,9 @@ function Projects() {
           </AnimatePresence>
         </motion.div>
 
-        {/* ================= BOTTOM TEXT ================= */}
+        {/* =====================================================
+            BOTTOM TEXT
+        ===================================================== */}
 
         <motion.div
           initial={{
@@ -584,7 +634,14 @@ function Projects() {
             pt-6
           "
         >
-          <p className="text-xs uppercase tracking-[0.15em] text-white/30">
+          <p
+            className="
+              text-xs
+              uppercase
+              tracking-[0.15em]
+              text-white/30
+            "
+          >
             Video Editing · Acting · Content
           </p>
 
@@ -594,9 +651,9 @@ function Projects() {
         </motion.div>
       </div>
 
-      {/* ========================================================= */}
-      {/* ================= PROJECT MODAL ========================= */}
-      {/* ========================================================= */}
+      {/* =====================================================
+          PROJECT MODAL
+      ===================================================== */}
 
       <AnimatePresence>
         {selectedProject && (
@@ -613,71 +670,79 @@ function Projects() {
             className="
               fixed
               inset-0
-              z-[100]
+              z-[9999]
               flex
               items-center
               justify-center
-              bg-black/90
-              p-4
+              overflow-y-auto
+              bg-black/95
+              p-3
               backdrop-blur-md
-              sm:p-8
+              sm:p-6
+              lg:p-8
             "
-            onClick={() => setSelectedProject(null)}
+            onClick={closeProject}
           >
+            {/* =================================================
+                MODAL CONTAINER
+            ================================================= */}
+
             <motion.div
               initial={{
                 opacity: 0,
                 scale: 0.94,
-                y: 30,
               }}
               animate={{
                 opacity: 1,
                 scale: 1,
-                y: 0,
               }}
               exit={{
                 opacity: 0,
                 scale: 0.94,
-                y: 30,
               }}
               transition={{
-                duration: 0.4,
+                duration: 0.3,
               }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
               className="
                 relative
                 flex
-                max-h-[92vh]
+                h-[90vh]
                 w-full
-                max-w-4xl
+                max-w-5xl
                 flex-col
                 overflow-hidden
                 rounded-2xl
                 border
-                border-white/15
-                bg-[#111111]
-                shadow-2xl
+                border-white/10
+                bg-[#0f0f0f]
               "
             >
-              {/* ================= MODAL HEADER ================= */}
+              {/* =================================================
+                  MODAL HEADER
+              ================================================= */}
 
               <div
                 className="
+                  relative
+                  z-20
                   flex
+                  shrink-0
                   items-start
                   justify-between
-                  gap-6
+                  gap-5
                   border-b
                   border-white/10
+                  bg-[#111111]
                   p-5
-                  sm:p-7
+                  sm:p-6
                 "
               >
-                <div>
+                <div className="min-w-0">
                   <p
                     className="
                       mb-2
-                      text-[10px]
+                      text-[9px]
                       font-bold
                       uppercase
                       tracking-[0.25em]
@@ -689,20 +754,21 @@ function Projects() {
 
                   <h3
                     className="
-                      text-2xl
+                      text-xl
                       font-bold
                       tracking-tight
-                      sm:text-3xl
+                      sm:text-2xl
                     "
                   >
                     {selectedProject.title}
                   </h3>
                 </div>
 
-                {/* Close */}
+                {/* Close Button */}
 
                 <button
-                  onClick={() => setSelectedProject(null)}
+                  type="button"
+                  onClick={closeProject}
                   className="
                     flex
                     h-10
@@ -726,47 +792,83 @@ function Projects() {
                 </button>
               </div>
 
-              {/* ================= VIDEO ================= */}
-
-              <div className="bg-black">
-                <video
-                  src={selectedProject.video}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="
-                    mx-auto
-                    max-h-[60vh]
-                    w-full
-                    object-contain
-                  "
-                />
-              </div>
-
-              {/* ================= MODAL FOOTER ================= */}
+              {/* =================================================
+                  MODAL VIDEO
+              ================================================= */}
 
               <div
                 className="
+                  relative
+                  min-h-0
+                  flex-1
+                  overflow-hidden
+                  bg-black
+                "
+              >
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    items-center
+                    justify-center
+                    bg-black
+                  "
+                >
+                  <video
+                    key={selectedProject.video}
+                    src={selectedProject.video}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    className="
+                      block
+                      h-full
+                      w-full
+                      object-contain
+                    "
+                  />
+                </div>
+              </div>
+
+              {/* =================================================
+                  MODAL FOOTER
+              ================================================= */}
+
+              <div
+                className="
+                  relative
+                  z-20
                   flex
+                  shrink-0
                   flex-col
-                  gap-4
+                  gap-3
                   border-t
                   border-white/10
+                  bg-[#111111]
                   p-5
                   sm:flex-row
                   sm:items-center
                   sm:justify-between
-                  sm:p-7
+                  sm:p-6
                 "
               >
-                <p className="max-w-2xl text-sm leading-6 text-white/45">
+                <p
+                  className="
+                    max-w-2xl
+                    text-sm
+                    leading-6
+                    text-white/45
+                  "
+                >
                   {selectedProject.description}
                 </p>
 
                 <span
                   className="
                     shrink-0
-                    text-[10px]
+                    text-[9px]
                     font-bold
                     uppercase
                     tracking-[0.2em]

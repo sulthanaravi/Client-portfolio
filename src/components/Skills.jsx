@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Camera, PenLine, BookOpen, Play } from "lucide-react";
+import { Camera, PenLine, BookOpen, ArrowUpRight } from "lucide-react";
 
 /* =====================================================
    SKILLS DATA
@@ -65,32 +65,45 @@ function Skills() {
     <section
       id="skills"
       className="
+        relative
         overflow-hidden
-        bg-[#e9e9e9]
-        px-6
+        bg-[#0f0f0f]
+        px-5
         py-20
-        text-[#111111]
-        transition-colors
-        duration-500
+        text-white
 
-        dark:bg-[#111111]
-        dark:text-white
+        sm:px-8
+        sm:py-24
 
-        sm:px-10
-        md:px-14
-        lg:px-20
-        lg:py-28
+        md:px-10
+        md:py-28
+
+        lg:px-14
+        lg:py-32
+
+        xl:px-20
       "
     >
-      <div className="mx-auto max-w-7xl">
-        {/* =================================================
-            SECTION HEADER
-        ================================================= */}
+      {/* ================= GRID BACKGROUND ================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.08]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[size:70px_70px]
+        "
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        {/* ================= HEADER ================= */}
 
         <motion.div
           initial={{
             opacity: 0,
-            y: 60,
+            y: 40,
           }}
           whileInView={{
             opacity: 1,
@@ -98,97 +111,112 @@ function Skills() {
           }}
           viewport={{
             once: true,
-            amount: 0.3,
+            amount: 0.2,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.7,
             ease: "easeOut",
           }}
           className="
-            mb-14
-            grid
-            gap-8
-            lg:grid-cols-2
-            lg:items-end
+            mb-10
+            flex
+            flex-col
+            gap-6
+
+            sm:mb-14
+
+            md:flex-row
+            md:items-end
+            md:justify-between
           "
         >
+          {/* ================= HEADER LEFT ================= */}
+
           <div>
-            <motion.p
-              initial={{
-                opacity: 0,
-                letterSpacing: "0.1em",
-              }}
-              whileInView={{
-                opacity: 1,
-                letterSpacing: "0.3em",
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 1,
-              }}
+            <div
               className="
                 mb-4
-                text-sm
+                flex
+                items-center
+                gap-3
+                text-xs
                 font-bold
+                tracking-[0.3em]
                 text-neutral-500
-                dark:text-neutral-400
               "
             >
+              <span
+                className="
+                  h-px
+                  w-8
+                  bg-neutral-500
+                "
+              />
               MY SKILLS
-            </motion.p>
+            </div>
 
             <h2
               className="
                 text-4xl
                 font-black
-                leading-tight
-                tracking-tight
+                leading-[0.95]
+                tracking-[-0.045em]
 
                 sm:text-5xl
-                lg:text-6xl
+
+                md:text-6xl
+
+                lg:text-7xl
               "
             >
-              Creative tools
+              Tools that bring
               <br />
-              <span
-                className="
-                  text-neutral-400
-                  dark:text-neutral-600
-                "
-              >
-                behind my work.
-              </span>
+              <span className="text-neutral-500">ideas to life.</span>
             </h2>
           </div>
+
+          {/* ================= HEADER DESCRIPTION ================= */}
+
+          <p
+            className="
+              max-w-sm
+              text-sm
+              leading-6
+              text-neutral-500
+
+              md:text-right
+            "
+          >
+            A combination of creative software, visual skills, and storytelling
+            techniques used to create engaging content.
+          </p>
         </motion.div>
 
-        {/* =================================================
-            SKILL CARDS
-        ================================================= */}
+        {/* ================= SKILLS GRID ================= */}
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{
             once: true,
-            amount: 0.15,
+            amount: 0.1,
           }}
           variants={{
             hidden: {},
+
             visible: {
               transition: {
-                staggerChildren: 0.12,
+                staggerChildren: 0.1,
               },
             },
           }}
           className="
             grid
+            w-full
+            grid-cols-1
             gap-4
 
-            sm:grid-cols-2
-            lg:grid-cols-3
+            sm:grid-cols-3
           "
         >
           {skills.map((skill) => (
@@ -206,12 +234,12 @@ function Skills() {
 
 function SkillCard({ number, category, title, description, icon }) {
   return (
-    <motion.div
+    <motion.article
       variants={{
         hidden: {
           opacity: 0,
-          y: 60,
-          scale: 0.95,
+          y: 40,
+          scale: 0.97,
         },
 
         visible: {
@@ -220,251 +248,269 @@ function SkillCard({ number, category, title, description, icon }) {
           scale: 1,
         },
       }}
-      whileHover={{
-        y: -10,
-        scale: 1.02,
-      }}
       transition={{
-        duration: 0.5,
+        duration: 0.6,
         ease: "easeOut",
+      }}
+      whileHover={{
+        y: -8,
       }}
       className="
         group
         relative
-        min-h-[300px]
+        min-h-[310px]
+        w-full
+        min-w-0
         overflow-hidden
-        rounded-3xl
+        rounded-[26px]
         border
-        border-neutral-300
-        bg-[#f5f5f5]
-        p-7
-        shadow-sm
+        border-neutral-800
+        bg-[#191919]
+        p-5
+        text-white
         transition-all
         duration-500
 
-        hover:border-black
-        hover:bg-black
-        hover:text-white
-        hover:shadow-2xl
+        hover:border-white
+        hover:bg-white
+        hover:text-black
+        hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)]
 
-        dark:border-neutral-800
-        dark:bg-[#191919]
-        dark:hover:border-white
-        dark:hover:bg-white
-        dark:hover:text-black
+        sm:min-h-[320px]
+        sm:p-6
 
-        sm:p-8
+        md:min-h-[330px]
+        md:p-6
+
+        lg:min-h-[350px]
+        lg:p-7
       "
     >
-      {/* =================================================
-          BACKGROUND DECORATION
-      ================================================= */}
+      {/* ================= TOP ================= */}
 
-      <motion.div
-        initial={{
-          scale: 0,
-          opacity: 0,
-        }}
-        whileHover={{
-          scale: 1,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.5,
-        }}
+      <div
         className="
-          absolute
-          -right-16
-          -top-16
-          h-40
-          w-40
-          rounded-full
-          bg-neutral-800
-          opacity-0
-          dark:bg-neutral-200
+          relative
+          z-10
+          flex
+          items-center
+          justify-between
+          gap-2
         "
-      />
-
-      {/* =================================================
-          TOP ROW
-      ================================================= */}
-
-      <div className="relative z-10 flex items-center justify-between">
-        {/* Number */}
+      >
+        {/* NUMBER */}
 
         <span
           className="
             text-xs
             font-bold
             tracking-[0.25em]
-            text-neutral-400
+            text-neutral-500
             transition-colors
-            duration-300
-
+            duration-500
             group-hover:text-neutral-500
           "
         >
           {number}
         </span>
 
-        {/* Category */}
+        {/* CATEGORY */}
 
         <span
           className="
+            whitespace-nowrap
             rounded-full
             border
-            border-neutral-300
-            px-3
+            border-neutral-700
+            px-2.5
             py-1
-            text-[9px]
+            text-[7px]
             font-bold
-            tracking-[0.2em]
+            tracking-[0.15em]
             text-neutral-500
             transition-all
-            duration-300
+            duration-500
 
-            group-hover:border-neutral-600
-            group-hover:text-neutral-400
-
-            dark:border-neutral-700
-            dark:text-neutral-500
-
-            dark:group-hover:border-neutral-300
-            dark:group-hover:text-neutral-600
+            group-hover:border-neutral-400
+            group-hover:text-neutral-500
           "
         >
           {category}
         </span>
       </div>
 
-      {/* =================================================
-          ICON
-      ================================================= */}
+      {/* ================= ICON ================= */}
 
       <motion.div
-        animate={{
-          y: [0, -6, 0],
+        whileHover={{
+          rotate: -7,
+          scale: 1.08,
         }}
         transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        whileHover={{
-          rotate: 8,
-          scale: 1.1,
+          duration: 0.3,
         }}
         className="
           relative
           z-10
-          mt-10
+          mt-9
           flex
-          h-16
-          w-16
+          h-14
+          w-14
+          shrink-0
           items-center
           justify-center
           rounded-2xl
-          bg-black
-          text-white
+          bg-white
+          text-black
           shadow-lg
           transition-all
           duration-500
 
-          group-hover:bg-white
-          group-hover:text-black
+          group-hover:bg-black
+          group-hover:text-white
 
-          dark:bg-white
-          dark:text-black
-
-          dark:group-hover:bg-black
-          dark:group-hover:text-white
+          sm:h-16
+          sm:w-16
         "
       >
         <SkillIcon type={icon} />
       </motion.div>
 
-      {/* =================================================
-          TITLE
-      ================================================= */}
+      {/* ================= TITLE ================= */}
 
       <h3
         className="
           relative
           z-10
-          mt-8
-          text-2xl
+          mt-6
+          pr-2
+          text-xl
           font-black
-          tracking-tight
+          leading-tight
+          tracking-[-0.03em]
+          transition-transform
+          duration-500
+
+          group-hover:translate-x-1
+
+          sm:text-2xl
+
+          lg:text-[25px]
         "
       >
         {title}
       </h3>
 
-      {/* =================================================
-          DESCRIPTION
-      ================================================= */}
+      {/* ================= DESCRIPTION ================= */}
 
       <p
         className="
           relative
           z-10
           mt-3
-          max-w-sm
-          text-sm
-          leading-6
+          pr-2
+          text-xs
+          leading-5
           text-neutral-500
           transition-colors
-          duration-300
+          duration-500
 
-          group-hover:text-neutral-400
+          group-hover:text-neutral-500
 
-          dark:text-neutral-500
-          dark:group-hover:text-neutral-600
+          sm:text-sm
+          sm:leading-6
         "
       >
         {description}
       </p>
 
-      {/* =================================================
-          BOTTOM LINE
-      ================================================= */}
+      {/* ================= ARROW ================= */}
 
       <motion.div
-        initial={{
-          width: "0%",
-        }}
         whileHover={{
-          width: "100%",
-        }}
-        transition={{
-          duration: 0.5,
+          rotate: 45,
         }}
         className="
           absolute
-          bottom-0
-          left-0
-          h-1
-          bg-white
+          bottom-5
+          right-5
+          flex
+          h-9
+          w-9
+          items-center
+          justify-center
+          rounded-full
+          border
+          border-neutral-700
+          text-neutral-500
+          transition-all
+          duration-500
 
-          dark:bg-black
+          group-hover:border-black
+          group-hover:bg-black
+          group-hover:text-white
+        "
+      >
+        <ArrowUpRight size={17} strokeWidth={1.8} />
+      </motion.div>
+
+      {/* ================= DECORATION CIRCLE ================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-24
+          -right-24
+          h-48
+          w-48
+          rounded-full
+          border
+          border-neutral-700
+          opacity-0
+          transition-all
+          duration-700
+
+          group-hover:scale-150
+          group-hover:opacity-20
         "
       />
-    </motion.div>
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-12
+          -right-12
+          h-24
+          w-24
+          rounded-full
+          border
+          border-neutral-700
+          opacity-0
+          transition-all
+          duration-700
+
+          group-hover:scale-150
+          group-hover:opacity-10
+        "
+      />
+    </motion.article>
   );
 }
 
 /* =====================================================
-   SKILL ICONS
+   ICONS
 ===================================================== */
 
 function SkillIcon({ type }) {
-  /* CAPCUT */
+  /* ================= CAPCUT ================= */
 
   if (type === "capcut") {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-8 w-8"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
@@ -477,13 +523,13 @@ function SkillIcon({ type }) {
     );
   }
 
-  /* DAVINCI RESOLVE */
+  /* ================= DAVINCI ================= */
 
   if (type === "davinci") {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-9 w-9"
+        className="h-8 w-8"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -501,13 +547,13 @@ function SkillIcon({ type }) {
     );
   }
 
-  /* ALIGHT MOTION */
+  /* ================= ALIGHT MOTION ================= */
 
   if (type === "alight") {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-9 w-9"
+        className="h-8 w-8"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
@@ -523,25 +569,25 @@ function SkillIcon({ type }) {
     );
   }
 
-  /* CONTENT WRITING */
+  /* ================= CONTENT WRITING ================= */
 
   if (type === "writing") {
-    return <PenLine size={32} strokeWidth={1.8} />;
+    return <PenLine size={29} strokeWidth={1.8} />;
   }
 
-  /* STORYTELLING */
+  /* ================= STORYTELLING ================= */
 
   if (type === "story") {
-    return <BookOpen size={32} strokeWidth={1.8} />;
+    return <BookOpen size={29} strokeWidth={1.8} />;
   }
 
-  /* VIDEOGRAPHY */
+  /* ================= VIDEOGRAPHY ================= */
 
   if (type === "video") {
-    return <Camera size={32} strokeWidth={1.8} />;
+    return <Camera size={29} strokeWidth={1.8} />;
   }
 
-  return <Play size={32} />;
+  return null;
 }
 
 export default Skills;

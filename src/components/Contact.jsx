@@ -24,11 +24,19 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#f5f5f5] px-6 py-20 text-black dark:bg-[#111111] dark:text-white sm:px-10 lg:px-14 lg:py-28"
+      className="relative overflow-hidden         bg-[#0f0f0f]
+ px-6 py-20 text-black dark:bg-[#111111] dark:text-white sm:px-10 lg:px-14 lg:py-28"
     >
       {/* ================= BACKGROUND ================= */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div
+        className="     pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.08]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[size:70px_70px]"
+      >
         <motion.div
           animate={{ rotate: 360 }}
           transition={{

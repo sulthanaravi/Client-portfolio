@@ -26,18 +26,35 @@ function Education() {
       className="
         relative
         overflow-hidden
-        bg-gray-100
-        px-5
-        py-14
-        transition-colors
-        duration-500
-        dark:bg-[#111111]
+  bg-[#0f0f0f]
+          px-5
+        py-24
+        text-white
+
         sm:px-8
-        lg:px-12
-        lg:py-20
+        sm:py-28
+
+        md:px-12
+        md:py-32
+
+        lg:px-20
+        lg:py-36
       "
     >
-      {/* Background decoration */}
+      {/* ================= BACKGROUND GRID ================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.055]
+           bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[size:70px_70px]
+        "
+      />
+
+      {/* ================= BACKGROUND GLOW ================= */}
 
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
@@ -47,14 +64,13 @@ function Education() {
         className="
           pointer-events-none
           absolute
-          -right-32
+          -right-40
           top-20
-          h-72
-          w-72
+          h-[500px]
+          w-[500px]
           rounded-full
-          bg-gray-300/40
+          bg-white/[0.025]
           blur-3xl
-          dark:bg-white/[0.03]
         "
       />
 
@@ -62,28 +78,32 @@ function Education() {
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{
+          duration: 1,
+          delay: 0.2,
+        }}
         className="
           pointer-events-none
           absolute
-          -left-32
-          bottom-10
-          h-72
-          w-72
+          -left-40
+          bottom-0
+          h-[400px]
+          w-[400px]
           rounded-full
-          bg-gray-300/30
+          bg-white/[0.02]
           blur-3xl
-          dark:bg-white/[0.02]
         "
       />
 
-      <div className="relative mx-auto max-w-7xl">
+      {/* ================= CONTENT ================= */}
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* ================= HEADER ================= */}
 
         <motion.div
           initial={{
             opacity: 0,
-            y: 40,
+            y: 35,
           }}
           whileInView={{
             opacity: 1,
@@ -96,48 +116,87 @@ function Education() {
           transition={{
             duration: 0.7,
           }}
-          className="mb-14"
+          className="
+            mb-14
+
+            sm:mb-16
+
+            md:mb-20
+          "
         >
-          <p
-            className="
-              mb-3
-              text-xs
-              font-bold
-              tracking-[0.3em]
-              text-gray-500
-              dark:text-gray-400
-            "
-          >
-            MY JOURNEY
-          </p>
+          <div className="flex items-center gap-4">
+            <span
+              className="
+                h-px
+                w-10
+                bg-white/40
+
+                sm:w-14
+              "
+            />
+
+            <p
+              className="
+                text-[10px]
+                font-bold
+                tracking-[0.35em]
+                text-neutral-500
+
+                sm:text-xs
+              "
+            >
+              MY JOURNEY
+            </p>
+          </div>
 
           <h2
             className="
-              text-4xl
+              mt-5
+              text-[42px]
               font-black
-              tracking-tight
-              text-black
-              dark:text-white
-              sm:text-5xl
-              lg:text-6xl
+              leading-[0.95]
+              tracking-[-0.04em]
+              text-white
+
+              sm:text-6xl
+
+              md:text-7xl
+
+              lg:text-[80px]
+
+              xl:text-[90px]
             "
           >
             Education
           </h2>
         </motion.div>
 
-        {/* ================= CONTENT ================= */}
+        {/* ================= MAIN CONTENT ================= */}
 
-        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-16
+
+            sm:gap-20
+
+            lg:grid-cols-[1.1fr_0.9fr]
+            lg:items-center
+            lg:gap-16
+
+            xl:gap-24
+          "
+        >
           {/* ================= EDUCATION CARDS ================= */}
 
-          <div className="space-y-5">
+          <div className="w-full space-y-4 sm:space-y-5">
             {educationData.map((education, index) => (
               <motion.div
                 key={education.title}
                 initial={{
                   opacity: 0,
-                  x: -50,
+                  x: -40,
                 }}
                 whileInView={{
                   opacity: 1,
@@ -148,11 +207,11 @@ function Education() {
                   amount: 0.2,
                 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
+                  duration: 0.65,
+                  delay: index * 0.12,
                 }}
                 whileHover={{
-                  x: 8,
+                  x: 6,
                 }}
                 className="
                   group
@@ -160,20 +219,22 @@ function Education() {
                   overflow-hidden
                   rounded-2xl
                   border
-                  border-black/10
-                  bg-white
-                  p-6
-                  shadow-sm
+                  border-white/10
+                  bg-white/[0.025]
+                  p-5
+                  backdrop-blur-sm
                   transition-all
                   duration-500
-                  hover:shadow-xl
-                  dark:border-white/10
-                  dark:bg-[#1a1a1a]
-                  dark:hover:border-white/20
-                  sm:p-7
+                  hover:border-white/20
+                  hover:bg-white/[0.045]
+                  hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+
+                  sm:p-6
+
+                  md:p-7
                 "
               >
-                {/* Hover line */}
+                {/* ================= HOVER LINE ================= */}
 
                 <motion.div
                   className="
@@ -182,8 +243,7 @@ function Education() {
                     top-0
                     h-full
                     w-1
-                    bg-black
-                    dark:bg-white
+                    bg-white
                   "
                   initial={{
                     scaleY: 0,
@@ -199,45 +259,54 @@ function Education() {
                   }}
                 />
 
-                <div className="flex items-start gap-5">
-                  {/* Icon */}
+                <div
+                  className="
+                    flex
+                    items-start
+                    gap-4
+
+                    sm:gap-5
+                  "
+                >
+                  {/* ================= ICON ================= */}
 
                   <div
                     className="
                       flex
-                      h-12
-                      w-12
+                      h-11
+                      w-11
                       shrink-0
                       items-center
                       justify-center
                       rounded-xl
-                      bg-gray-100
-                      text-black
+                      bg-white/[0.06]
+                      text-white
                       transition-all
                       duration-500
                       group-hover:scale-110
-                      group-hover:bg-black
-                      group-hover:text-white
-                      dark:bg-white/10
-                      dark:text-white
-                      dark:group-hover:bg-white
-                      dark:group-hover:text-black
+                      group-hover:bg-white
+                      group-hover:text-black
+
+                      sm:h-12
+                      sm:w-12
                     "
                   >
-                    <GraduationCap size={22} strokeWidth={1.8} />
+                    <GraduationCap size={21} strokeWidth={1.7} />
                   </div>
 
-                  {/* Text */}
+                  {/* ================= TEXT ================= */}
 
                   <div className="min-w-0 flex-1">
                     <p
                       className="
-                        mb-1
-                        text-[10px]
+                        mb-1.5
+                        text-[9px]
                         font-bold
                         tracking-[0.2em]
-                        text-gray-400
-                        dark:text-gray-500
+                        text-neutral-600
+
+                        sm:text-[10px]
+                        sm:text-neutral-500
                       "
                     >
                       {education.year}
@@ -245,11 +314,14 @@ function Education() {
 
                     <h3
                       className="
-                        text-lg
+                        text-base
                         font-bold
-                        text-black
-                        dark:text-white
-                        sm:text-xl
+                        leading-tight
+                        text-white
+
+                        sm:text-lg
+
+                        md:text-xl
                       "
                     >
                       {education.title}
@@ -257,18 +329,21 @@ function Education() {
 
                     <p
                       className="
-                        mt-1
-                        text-sm
-                        leading-6
-                        text-gray-500
-                        dark:text-gray-400
+                        mt-1.5
+                        max-w-xl
+                        text-xs
+                        leading-5
+                        text-neutral-500
+
+                        sm:text-sm
+                        sm:leading-6
                       "
                     >
                       {education.institution}
                     </p>
                   </div>
 
-                  {/* Arrow */}
+                  {/* ================= ARROW ================= */}
 
                   <motion.div
                     whileHover={{
@@ -276,10 +351,11 @@ function Education() {
                     }}
                     className="
                       hidden
-                      text-gray-400
+                      text-neutral-600
                       transition-colors
-                      group-hover:text-black
-                      dark:group-hover:text-white
+                      duration-300
+                      group-hover:text-white
+
                       sm:block
                     "
                   >
@@ -290,12 +366,12 @@ function Education() {
             ))}
           </div>
 
-          {/* ================= RIGHT SIDE VISUAL ================= */}
+          {/* ================= RIGHT VISUAL ================= */}
 
           <motion.div
             initial={{
               opacity: 0,
-              x: 50,
+              x: 40,
             }}
             whileInView={{
               opacity: 1,
@@ -307,21 +383,24 @@ function Education() {
             }}
             transition={{
               duration: 0.8,
-              delay: 0.2,
+              delay: 0.15,
             }}
             className="
-    relative
-    flex
-    min-h-[300px]
-    w-full
-    items-center
-    justify-center
-    sm:min-h-[340px]
-    md:min-h-[380px]
-    lg:min-h-[420px]
-  "
+              relative
+              flex
+              min-h-[320px]
+              w-full
+              items-center
+              justify-center
+
+              sm:min-h-[380px]
+
+              md:min-h-[420px]
+
+              lg:min-h-[460px]
+            "
           >
-            {/* Outer rotating circle */}
+            {/* ================= OUTER ROTATING CIRCLE ================= */}
 
             <motion.div
               animate={{
@@ -333,49 +412,81 @@ function Education() {
                 ease: "linear",
               }}
               className="
-      absolute
-      h-56
-      w-56
-      rounded-full
-      border
-      border-dashed
-      border-black/20
-      dark:border-white/10
+                absolute
+                h-52
+                w-52
+                rounded-full
+                border
+                border-dashed
+                border-white/10
 
-      sm:h-64
-      sm:w-64
+                sm:h-64
+                sm:w-64
 
-      md:h-72
-      md:w-72
-    "
+                md:h-72
+                md:w-72
+
+                lg:h-80
+                lg:w-80
+              "
             />
 
-            {/* Second decorative circle */}
+            {/* ================= SECOND CIRCLE ================= */}
 
             <motion.div
               animate={{
                 rotate: -360,
               }}
               transition={{
-                duration: 20,
+                duration: 22,
                 repeat: Infinity,
                 ease: "linear",
               }}
               className="
-      absolute
-      h-44
-      w-44
-      rounded-full
-      border
-      border-black/10
-      dark:border-white/10
+                absolute
+                h-40
+                w-40
+                rounded-full
+                border
+                border-white/[0.08]
 
-      sm:h-52
-      sm:w-52
-    "
+                sm:h-52
+                sm:w-52
+
+                md:h-60
+                md:w-60
+
+                lg:h-64
+                lg:w-64
+              "
             />
 
-            {/* Main circle */}
+            {/* ================= THIRD CIRCLE ================= */}
+
+            <motion.div
+              animate={{
+                scale: [1, 1.06, 1],
+                opacity: [0.2, 0.45, 0.2],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="
+                absolute
+                h-32
+                w-32
+                rounded-full
+                border
+                border-white/10
+
+                sm:h-40
+                sm:w-40
+              "
+            />
+
+            {/* ================= MAIN CIRCLE ================= */}
 
             <motion.div
               animate={{
@@ -390,45 +501,52 @@ function Education() {
                 scale: 1.05,
               }}
               className="
-      relative
-      z-10
-      flex
-      h-36
-      w-36
-      items-center
-      justify-center
-      rounded-full
-      bg-black
-      shadow-2xl
-      transition-transform
-      duration-500
-      dark:bg-white
+                relative
+                z-10
+                flex
+                h-28
+                w-28
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                shadow-[0_0_70px_rgba(255,255,255,0.08)]
+                transition-transform
+                duration-500
 
-      sm:h-44
-      sm:w-44
+                sm:h-36
+                sm:w-36
 
-      md:h-52
-      md:w-52
-    "
+                md:h-44
+                md:w-44
+
+                lg:h-48
+                lg:w-48
+              "
             >
               <GraduationCap
-                size={55}
+                size={48}
                 strokeWidth={1}
                 className="
-        text-white
-        sm:h-[65px]
-        sm:w-[65px]
-        md:h-[80px]
-        md:w-[80px]
-        dark:text-black
-      "
+                  text-black
+
+                  sm:h-[58px]
+                  sm:w-[58px]
+
+                  md:h-[68px]
+                  md:w-[68px]
+
+                  lg:h-[75px]
+                  lg:w-[75px]
+                "
               />
 
-              {/* Top dot */}
+              {/* CENTER TOP DOT */}
 
               <motion.span
                 animate={{
-                  y: [0, -8, 0],
+                  y: [0, -7, 0],
+                  scale: [1, 1.2, 1],
                 }}
                 transition={{
                   duration: 3,
@@ -436,26 +554,26 @@ function Education() {
                   ease: "easeInOut",
                 }}
                 className="
-        absolute
-        right-5
-        top-5
-        h-2
-        w-2
-        rounded-full
-        bg-white/60
-        sm:right-7
-        sm:top-7
-        sm:h-3
-        sm:w-3
-        dark:bg-black/40
-      "
+                  absolute
+                  right-5
+                  top-5
+                  h-2
+                  w-2
+                  rounded-full
+                  bg-black/30
+
+                  sm:right-7
+                  sm:top-7
+                  sm:h-2.5
+                  sm:w-2.5
+                "
               />
 
-              {/* Bottom dot */}
+              {/* CENTER BOTTOM DOT */}
 
               <motion.span
                 animate={{
-                  y: [0, 8, 0],
+                  y: [0, 7, 0],
                 }}
                 transition={{
                   duration: 3.5,
@@ -463,26 +581,71 @@ function Education() {
                   ease: "easeInOut",
                 }}
                 className="
-        absolute
-        bottom-6
-        left-5
-        h-2
-        w-2
-        rounded-full
-        bg-white/40
-        sm:bottom-8
-        sm:left-7
-        dark:bg-black/30
-      "
+                  absolute
+                  bottom-5
+                  left-5
+                  h-2
+                  w-2
+                  rounded-full
+                  bg-black/20
+
+                  sm:bottom-7
+                  sm:left-7
+                "
               />
             </motion.div>
 
-            {/* Floating dot 1 */}
+            {/* ================= ORBIT DOT ================= */}
+
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="
+                absolute
+                h-52
+                w-52
+
+                sm:h-64
+                sm:w-64
+
+                md:h-72
+                md:w-72
+
+                lg:h-80
+                lg:w-80
+              "
+            >
+              <span
+                className="
+                  absolute
+                  left-1/2
+                  top-0
+                  h-2
+                  w-2
+                  -translate-x-1/2
+                  rounded-full
+                  bg-white
+                  shadow-[0_0_15px_rgba(255,255,255,0.7)]
+
+                  sm:h-2.5
+                  sm:w-2.5
+                "
+              />
+            </motion.div>
+
+            {/* ================= FLOATING DOT LEFT ================= */}
 
             <motion.span
               animate={{
-                y: [0, -15, 0],
+                y: [0, -12, 0],
                 x: [0, 5, 0],
+                opacity: [0.4, 1, 0.4],
               }}
               transition={{
                 duration: 4,
@@ -490,23 +653,26 @@ function Education() {
                 ease: "easeInOut",
               }}
               className="
-      absolute
-      left-[15%]
-      top-[20%]
-      h-3
-      w-3
-      rounded-full
-      bg-black
-      dark:bg-white
-    "
+                absolute
+                left-[12%]
+                top-[20%]
+                h-2
+                w-2
+                rounded-full
+                bg-white
+
+                sm:h-3
+                sm:w-3
+              "
             />
 
-            {/* Floating dot 2 */}
+            {/* ================= FLOATING DOT RIGHT ================= */}
 
             <motion.span
               animate={{
                 y: [0, 12, 0],
                 x: [0, -5, 0],
+                opacity: [0.3, 0.8, 0.3],
               }}
               transition={{
                 duration: 3.5,
@@ -514,15 +680,17 @@ function Education() {
                 ease: "easeInOut",
               }}
               className="
-      absolute
-      bottom-[20%]
-      right-[15%]
-      h-2
-      w-2
-      rounded-full
-      bg-neutral-400
-      dark:bg-neutral-500
-    "
+                absolute
+                bottom-[18%]
+                right-[12%]
+                h-1.5
+                w-1.5
+                rounded-full
+                bg-neutral-500
+
+                sm:h-2
+                sm:w-2
+              "
             />
           </motion.div>
         </div>
