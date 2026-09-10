@@ -5,50 +5,55 @@ function About() {
     <section
       id="about"
       className="
-  overflow-hidden
-  bg-[#f5f5f5]
-  px-6
-  pt-20
-  pb-8
-  text-[#111111]
-  transition-colors
-  duration-500
-  dark:bg-[#181818]
-  dark:text-white
-  sm:px-10
-  md:px-14
-  lg:px-20
-"
+        relative
+        overflow-hidden
+        bg-[#0f0f0f]
+        px-5
+        py-20
+        text-white
+
+        sm:px-8
+        sm:py-24
+
+        md:px-12
+        md:py-28
+
+        lg:px-20
+        lg:py-32
+      "
     >
-      <div className="mx-auto max-w-7xl">
+      {/* GRID BACKGROUND */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.08]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[size:70px_70px]
+        "
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* ================= HEADING ================= */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 50,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.3,
-          }}
-          transition={{
-            duration: 0.8,
-          }}
-          className="mb-14"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+          className="mb-12 sm:mb-16 md:mb-20"
         >
           <p
             className="
-              mb-3
-              text-sm
+              mb-4
+              text-[10px]
               font-bold
-              tracking-[0.3em]
+              tracking-[0.35em]
               text-neutral-500
-              dark:text-neutral-400
+
+              sm:text-xs
+              md:text-sm
             "
           >
             ABOUT ME
@@ -56,183 +61,249 @@ function About() {
 
           <h2
             className="
-              text-4xl
+              max-w-4xl
+              text-3xl
               font-black
+              leading-[1.05]
               tracking-tight
+
               sm:text-5xl
-              lg:text-6xl
+
+              md:text-6xl
+
+              lg:text-7xl
+
+              xl:text-[80px]
             "
           >
             Creativity meets
             <br />
-            <span className="text-neutral-400 dark:text-neutral-600">
-              meaningful storytelling.
-            </span>
+            <span className="text-neutral-500">meaningful storytelling.</span>
           </h2>
         </motion.div>
 
         {/* ================= CONTENT ================= */}
 
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* ================= ABOUT TEXT ================= */}
+        <div
+          className="
+            flex
+            flex-col
+            gap-14
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-          >
-            <p
-              className="
-                text-lg
-                leading-8
-                text-neutral-600
-                dark:text-neutral-400
-              "
+            sm:gap-16
+
+            md:gap-20
+
+            lg:gap-24
+
+            xl:flex-row
+            xl:items-center
+            xl:gap-16
+          "
+        >
+          {/* ================= LEFT TEXT ================= */}
+
+          <div className="w-full xl:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
             >
-              I’m Mohamed Sharuk, a passionate Video Editor, Content Creator,
-              and aspiring Digital Marketer with a strong interest in creative
-              communication. With 2 years of experience in video editing and
-              content creation, I also have a strong ability in storytelling and
-              content writing, allowing me to turn ideas into engaging and
-              impactful content.
-            </p>
+              <p
+                className="
+                  max-w-2xl
+                  text-sm
+                  leading-7
+                  text-neutral-400
 
-            <p
-              className="
-                mt-6
-                text-lg
-                leading-8
-                text-neutral-600
-                dark:text-neutral-400
-              "
-            >
-              As a fresher in Digital Marketing, I’m eager to apply my
-              creativity, learn new strategies, and grow within the industry.
-              I’m driven by passion, curiosity, and a constant desire to improve
-              — and given the right opportunity, I’m ready to create, learn, and
-              make a meaningful impact.
-            </p>
+                  sm:text-base
+                  sm:leading-8
 
-            {/* ================= BUTTON ================= */}
+                  md:text-lg
+                  md:leading-9
 
-            <motion.a
-              whileHover={{ x: 6 }}
-              href="#contact"
-              className="
-    mt-8
-    inline-flex
-    items-center
-    gap-2
-    text-sm
-    font-bold
-    uppercase
-    tracking-[0.12em]
-    text-[#111111]
-    transition-all
-    duration-300
-    dark:text-white
-  "
-            >
-              Get In Touch
-              <span className="text-lg">→</span>
-            </motion.a>
-          </motion.div>
+                  lg:text-xl
+                "
+              >
+                I’m Mohamed Sharuk, a passionate Video Editor, Content Creator,
+                and aspiring Digital Marketer with a strong interest in creative
+                communication. With 2 years of experience in video editing and
+                content creation, I also have a strong ability in storytelling
+                and content writing, allowing me to turn ideas into engaging and
+                impactful content.
+              </p>
 
-          {/* ================= RIGHT SIDE ================= */}
+              <p
+                className="
+                  mt-6
+                  max-w-2xl
+                  text-sm
+                  leading-7
+                  text-neutral-400
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.15,
-            }}
+                  sm:mt-7
+                  sm:text-base
+                  sm:leading-8
+
+                  md:text-lg
+                  md:leading-9
+
+                  lg:text-xl
+                "
+              >
+                As a fresher in Digital Marketing, I’m eager to apply my
+                creativity, learn new strategies, and grow within the industry.
+                I’m driven by passion, curiosity, and a constant desire to
+                improve — and given the right opportunity, I’m ready to create,
+                learn, and make a meaningful impact.
+              </p>
+
+              {/* GET IN TOUCH */}
+
+              <motion.a
+                whileHover={{ x: 6 }}
+                whileTap={{ scale: 0.96 }}
+                href="#contact"
+                className="
+                  mt-8
+                  inline-flex
+                  items-center
+                  gap-3
+                  border-b
+                  border-neutral-600
+                  pb-2
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.2em]
+                  text-white
+                  transition-all
+                  duration-300
+
+                  sm:text-xs
+
+                  md:text-sm
+                "
+              >
+                Get In Touch
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="text-base"
+                >
+                  →
+                </motion.span>
+              </motion.a>
+            </motion.div>
+          </div>
+
+          {/* ================= RIGHT ANIMATION ================= */}
+
+          <div
             className="
-    flex
-    w-full
-    items-center
-    justify-center
-    lg:justify-end
-  "
+              flex
+              w-full
+              items-center
+              justify-center
+
+              xl:w-1/2
+            "
           >
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.15,
+              }}
               className="
-      relative
-      flex
-      h-64
-      w-full
-      max-w-sm
-      items-center
-      justify-center
-      overflow-hidden
-      transition-all
-      duration-500
-    
-      sm:h-72
-      sm:max-w-md
-      sm:rounded-[2rem]
-      lg:h-80
-      lg:max-w-md
-    "
+                relative
+                flex
+                h-64
+                w-full
+                max-w-[300px]
+                items-center
+                justify-center
+
+                sm:h-72
+                sm:max-w-[360px]
+
+                md:h-80
+                md:max-w-[400px]
+
+                lg:h-96
+                lg:max-w-[460px]
+              "
             >
-              {/* ================= OUTER ROTATING CIRCLE ================= */}
+              {/* OUTER ROTATING CIRCLE */}
 
               <motion.div
-                animate={{
-                  rotate: 360,
-                }}
+                animate={{ rotate: 360 }}
                 transition={{
                   duration: 20,
                   repeat: Infinity,
                   ease: "linear",
                 }}
                 className="
-        absolute
-        h-44
-        w-44
-        rounded-full
-        border
-        border-dashed
-        border-neutral-300
+                  absolute
+                  h-48
+                  w-48
+                  rounded-full
+                  border
+                  border-dashed
+                  border-neutral-700
 
-        dark:border-neutral-600
+                  sm:h-56
+                  sm:w-56
 
-        sm:h-52
-        sm:w-52
+                  md:h-64
+                  md:w-64
 
-        lg:h-60
-        lg:w-60
-      "
+                  lg:h-72
+                  lg:w-72
+                "
               />
 
-              {/* ================= INNER CIRCLE ================= */}
+              {/* SECOND CIRCLE */}
+
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{
+                  duration: 28,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="
+                  absolute
+                  h-36
+                  w-36
+                  rounded-full
+                  border
+                  border-neutral-800
+
+                  sm:h-44
+                  sm:w-44
+
+                  md:h-52
+                  md:w-52
+
+                  lg:h-60
+                  lg:w-60
+                "
+              />
+
+              {/* CENTER */}
 
               <motion.div
                 animate={{
                   y: [0, -10, 0],
-                  scale: [1, 1.03, 1],
+                  scale: [1, 1.04, 1],
                 }}
                 transition={{
                   duration: 4,
@@ -240,42 +311,42 @@ function About() {
                   ease: "easeInOut",
                 }}
                 className="
-        relative
-        z-10
-        flex
-        h-28
-        w-28
-        items-center
-        justify-center
-        rounded-full
-        bg-black
-        text-center
-        shadow-2xl
+                  relative
+                  z-10
+                  flex
+                  h-24
+                  w-24
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white
+                  text-center
+                  shadow-2xl
 
-        dark:bg-white
+                  sm:h-28
+                  sm:w-28
 
-        sm:h-32
-        sm:w-32
+                  md:h-32
+                  md:w-32
 
-        lg:h-36
-        lg:w-36
-      "
+                  lg:h-36
+                  lg:w-36
+                "
               >
                 <span
                   className="
-          px-3
-          text-[10px]
-          font-black
-          uppercase
-          leading-5
-          tracking-[0.15em]
-          text-white
+                    px-2
+                    text-[9px]
+                    font-black
+                    uppercase
+                    leading-4
+                    tracking-[0.15em]
+                    text-black
 
-          dark:text-black
+                    sm:text-[10px]
 
-          sm:text-xs
-          sm:tracking-widest
-        "
+                    md:text-xs
+                  "
                 >
                   Create.
                   <br />
@@ -285,7 +356,7 @@ function About() {
                 </span>
               </motion.div>
 
-              {/* ================= TOP DOT ================= */}
+              {/* TOP DOT */}
 
               <motion.span
                 animate={{
@@ -298,24 +369,51 @@ function About() {
                   ease: "easeInOut",
                 }}
                 className="
-        absolute
-        left-8
-        top-8
-        h-2
-        w-2
-        rounded-full
-        bg-black
+                  absolute
+                  left-5
+                  top-5
+                  h-2
+                  w-2
+                  rounded-full
+                  bg-white
 
-        dark:bg-white
+                  sm:left-8
+                  sm:top-8
 
-        sm:left-10
-        sm:top-10
-        sm:h-3
-        sm:w-3
-      "
+                  md:h-3
+                  md:w-3
+                "
               />
 
-              {/* ================= BOTTOM DOT ================= */}
+              {/* RIGHT DOT */}
+
+              <motion.span
+                animate={{
+                  x: [0, 8, 0],
+                  opacity: [0.3, 1, 0.3],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="
+                  absolute
+                  right-4
+                  top-1/2
+                  h-1.5
+                  w-1.5
+                  rounded-full
+                  bg-neutral-400
+
+                  sm:right-8
+
+                  md:h-2
+                  md:w-2
+                "
+              />
+
+              {/* BOTTOM DOT */}
 
               <motion.span
                 animate={{
@@ -328,24 +426,23 @@ function About() {
                   ease: "easeInOut",
                 }}
                 className="
-        absolute
-        bottom-8
-        right-8
-        h-1.5
-        w-1.5
-        rounded-full
-        bg-neutral-400
+                  absolute
+                  bottom-5
+                  right-6
+                  h-1.5
+                  w-1.5
+                  rounded-full
+                  bg-neutral-500
 
-        dark:bg-neutral-500
+                  sm:bottom-8
+                  sm:right-10
 
-        sm:bottom-10
-        sm:right-10
-        sm:h-2
-        sm:w-2
-      "
+                  md:h-2
+                  md:w-2
+                "
               />
 
-              {/* ================= EXTRA DECORATIVE DOT ================= */}
+              {/* LEFT BOTTOM DOT */}
 
               <motion.span
                 animate={{
@@ -358,23 +455,44 @@ function About() {
                   ease: "easeInOut",
                 }}
                 className="
-        absolute
-        bottom-12
-        left-12
-        h-1.5
-        w-1.5
-        rounded-full
-        bg-neutral-300
+                  absolute
+                  bottom-10
+                  left-8
+                  h-1
+                  w-1
+                  rounded-full
+                  bg-neutral-600
 
-        dark:bg-neutral-600
-
-        sm:bottom-14
-        sm:left-14
-      "
+                  sm:bottom-12
+                  sm:left-12
+                "
               />
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
+
+        {/* ================= BOTTOM LINE ================= */}
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="
+            mt-16
+            flex
+            items-center
+            justify-between
+            border-t
+            border-neutral-800
+            pt-5
+
+            sm:mt-20
+            sm:pt-6
+
+            md:mt-24
+          "
+        ></motion.div>
       </div>
     </section>
   );
