@@ -1,7 +1,6 @@
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { useTheme } from "../context/ThemeContext";
 
 const menuItems = [
   { name: "Home", href: "#home" },
@@ -13,72 +12,119 @@ const menuItems = [
 ];
 
 function Navbar() {
-  const { darkMode, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState(null);
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
+      {/* ================= NAVBAR BUTTON ================= */}
 
-      <header className="absolute right-0 top-0 z-[100] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-9">
+      <header
+        className="
+          fixed
+          right-0
+          top-0
+          z-[9999]
+          px-6
+          py-6
+
+          sm:px-8
+          sm:py-8
+
+          lg:px-10
+          lg:py-9
+        "
+      >
         <motion.button
           type="button"
           onClick={() => setMenuOpen((prev) => !prev)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.92 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.9 }}
           aria-label={
             menuOpen ? "Close navigation menu" : "Open navigation menu"
           }
-          className={`
-      flex
-      h-12
-      w-12
-      items-center
-      justify-center
-      rounded-full
-      transition-all
-      duration-300
+          className="
+            relative
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-full
 
-      ${
-        darkMode
-          ? "text-white hover:bg-white/10"
-          : "text-[#111111] hover:bg-black/5"
-      }
-    `}
+            text-black
+            dark:text-white
+
+            transition-all
+            duration-300
+
+            hover:bg-black/10
+            dark:hover:bg-white/10
+          "
         >
           <AnimatePresence mode="wait">
             {menuOpen ? (
               <motion.div
                 key="close"
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 90 }}
+                initial={{
+                  opacity: 0,
+                  rotate: -90,
+                  scale: 0.5,
+                }}
+                animate={{
+                  opacity: 1,
+                  rotate: 0,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  rotate: 90,
+                  scale: 0.5,
+                }}
+                transition={{
+                  duration: 0.25,
+                }}
               >
-                <X size={34} strokeWidth={2} />
+                <X size={34} strokeWidth={1.8} />
               </motion.div>
             ) : (
               <motion.div
                 key="menu"
-                initial={{ opacity: 0, rotate: 90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: -90 }}
+                initial={{
+                  opacity: 0,
+                  rotate: 90,
+                  scale: 0.5,
+                }}
+                animate={{
+                  opacity: 1,
+                  rotate: 0,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  rotate: -90,
+                  scale: 0.5,
+                }}
+                transition={{
+                  duration: 0.25,
+                }}
               >
-                <Menu size={34} strokeWidth={2} />
+                <Menu size={34} strokeWidth={1.8} />
               </motion.div>
             )}
           </AnimatePresence>
         </motion.button>
       </header>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* ================= MENU ================= */}
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{
               opacity: 0,
-              y: -20,
-              scale: 0.97,
+              y: -35,
+              scale: 0.96,
             }}
             animate={{
               opacity: 1,
@@ -87,89 +133,360 @@ function Navbar() {
             }}
             exit={{
               opacity: 0,
-              y: -20,
-              scale: 0.97,
+              y: -35,
+              scale: 0.96,
             }}
             transition={{
-              duration: 0.3,
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
             }}
-            className={`
+            className="
               fixed
               left-4
               right-4
               top-[76px]
-              z-[90]
+              z-[9998]
+
+              overflow-hidden
               rounded-3xl
+
               border
-              p-4
+              border-white/10
+
+              bg-[#101010]/95
+
               shadow-2xl
+              shadow-black/50
+
               backdrop-blur-2xl
 
+              sm:left-6
+              sm:right-6
               sm:top-[82px]
 
-              ${
-                darkMode
-                  ? `
-                    border-white/10
-                    bg-[#111111]/95
-                    shadow-black/50
-                  `
-                  : `
-                    border-black/10
-                    bg-white/95
-                    shadow-black/15
-                  `
-              }
+              lg:left-5
+              lg:right-5
+              lg:top-[106px]
 
-              lg:hidden
-            `}
+              lg:h-[480px]
+
+              lg:rounded-[32px]
+            "
           >
-            <nav className="flex flex-col gap-1">
+            {/* ================= BACKGROUND DETAILS ================= */}
+
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="
+                pointer-events-none
+                absolute
+
+                -right-32
+                -top-32
+
+                h-[430px]
+                w-[430px]
+
+                rounded-full
+
+                border
+                border-white/[0.04]
+
+                lg:block
+              "
+            />
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+
+                bg-[radial-gradient(circle_at_70%_45%,rgba(255,255,255,0.07),transparent_35%)]
+              "
+            />
+
+            {/* ================= HEADER ================= */}
+
+            <div
+              className="
+                relative
+                z-10
+
+                flex
+                items-center
+                justify-between
+
+                px-5
+                pt-5
+
+                sm:px-7
+                sm:pt-7
+
+                lg:px-12
+                lg:pt-9
+              "
+            >
+              <div className="flex items-center gap-3">
+                <motion.span
+                  initial={{ width: 0 }}
+                  animate={{ width: 35 }}
+                  transition={{
+                    delay: 0.2,
+                    duration: 0.4,
+                  }}
+                  className="h-px bg-white/50"
+                />
+
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.25 }}
+                  className="
+                    text-[9px]
+                    font-medium
+                    uppercase
+                    tracking-[0.35em]
+                    text-white/40
+
+                    lg:text-[10px]
+                  "
+                >
+                  Navigation
+                </motion.span>
+              </div>
+
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="
+                  hidden
+                  text-[9px]
+                  tracking-[0.25em]
+                  text-white/30
+
+                  sm:block
+                "
+              >
+                MENU
+              </motion.span>
+            </div>
+
+            {/* ================= NAV LINKS ================= */}
+
+            <nav
+              className="
+                relative
+                z-10
+
+                flex
+                flex-col
+
+                px-5
+                pb-5
+                pt-3
+
+                sm:px-7
+
+                lg:px-12
+                lg:pt-5
+              "
+            >
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
+                  onMouseEnter={() => setHovered(index)}
+                  onMouseLeave={() => setHovered(null)}
                   initial={{
                     opacity: 0,
-                    x: -15,
+                    x: -25,
                   }}
                   animate={{
                     opacity: 1,
                     x: 0,
                   }}
                   transition={{
-                    delay: index * 0.06,
+                    delay: 0.08 + index * 0.07,
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                  className={`
-                    rounded-2xl
-                    px-5
-                    py-4
-                    text-sm
-                    font-bold
-                    tracking-[0.15em]
-                    transition-all
-                    duration-300
+                  className="
+                    group
+                    relative
+                    flex
+                    items-center
 
-                    ${
-                      darkMode
-                        ? `
-                          text-white
-                          hover:bg-white
-                          hover:text-black
-                        `
-                        : `
-                          text-black
-                          hover:bg-black
-                          hover:text-white
-                        `
-                    }
-                  `}
+                    border-b
+                    border-white/[0.07]
+
+                    py-3
+
+                    sm:py-4
+
+                    lg:py-3
+                  "
                 >
-                  {item.name.toUpperCase()}
+                  {/* NUMBER */}
+
+                  <motion.span
+                    animate={{
+                      opacity: hovered === null || hovered === index ? 1 : 0.2,
+                      x: hovered === index ? 8 : 0,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="
+                      mr-5
+                      w-7
+
+                      text-[10px]
+                      font-medium
+                      tracking-widest
+                      text-white/30
+
+                      lg:mr-8
+                      lg:w-8
+                    "
+                  >
+                    0{index + 1}
+                  </motion.span>
+
+                  {/* LINK */}
+
+                  <motion.span
+                    animate={{
+                      x: hovered === index ? 12 : 0,
+                      opacity: hovered === null || hovered === index ? 1 : 0.45,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeOut",
+                    }}
+                    className="
+                      text-base
+                      font-bold
+                      tracking-[0.14em]
+                      text-white
+
+                      sm:text-lg
+
+                      lg:text-[18px]
+                      lg:tracking-[0.12em]
+                    "
+                  >
+                    {item.name.toUpperCase()}
+                  </motion.span>
+
+                  {/* ARROW */}
+
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: -10,
+                      rotate: -20,
+                    }}
+                    animate={{
+                      opacity: hovered === index ? 1 : 0,
+                      x: hovered === index ? 12 : -10,
+                      rotate: hovered === index ? 0 : -20,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="ml-2 text-white"
+                  >
+                    <ArrowUpRight size={19} strokeWidth={1.8} />
+                  </motion.div>
+
+                  {/* HOVER LINE */}
+
+                  <motion.div
+                    initial={{
+                      width: 0,
+                    }}
+                    animate={{
+                      width: hovered === index ? "100%" : "0%",
+                    }}
+                    transition={{
+                      duration: 0.35,
+                    }}
+                    className="
+                      pointer-events-none
+                      absolute
+                      bottom-[-1px]
+                      left-0
+                      h-px
+                      bg-white/60
+                    "
+                  />
+
+                  {/* ACTIVE DOT */}
+
+                  <motion.div
+                    initial={{
+                      scale: 0,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      scale: hovered === index ? 1 : 0,
+                      opacity: hovered === index ? 1 : 0,
+                    }}
+                    className="
+                      absolute
+                      right-2
+                      h-1.5
+                      w-1.5
+                      rounded-full
+                      bg-white
+                    "
+                  />
                 </motion.a>
               ))}
             </nav>
+
+            {/* ================= BOTTOM TEXT ================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.65,
+                duration: 0.4,
+              }}
+              className="
+                absolute
+                bottom-6
+                right-8
+
+                hidden
+
+                text-[8px]
+                uppercase
+                tracking-[0.3em]
+                text-white/25
+
+                lg:block
+              "
+            >
+              Creative / Visual / Digital
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
