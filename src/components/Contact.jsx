@@ -25,7 +25,7 @@ function Contact() {
     <section
       id="contact"
       className="relative overflow-hidden         bg-[#0f0f0f]
- px-6 py-20 text-black dark:bg-[#111111] dark:text-white sm:px-10 lg:px-14 lg:py-28"
+ px-6 py-10 text-black dark:bg-[#111111] dark:text-white"
     >
       {/* ================= BACKGROUND ================= */}
 
@@ -88,9 +88,15 @@ function Contact() {
           transition={{ duration: 0.6 }}
           className="mb-12 flex items-center gap-4"
         >
-          <span className="h-px w-10 bg-black dark:bg-white" />
+          <span className="h-px w-10   bg-white/50" />
 
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/50 dark:text-white/40">
+          <p
+            className=" text-xs
+      font-bold
+      uppercase
+      tracking-[0.3em]
+      text-white/50"
+          >
             Get In Touch
           </p>
         </motion.div>
@@ -271,12 +277,12 @@ function Contact() {
             duration: 0.8,
             delay: 0.4,
           }}
-          className="mt-20 border-t border-black/10 pt-6 dark:border-white/10"
+          className="mt-20 "
         >
           <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.15em] text-black/40 dark:text-white/30 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 Mohamed Sharuk</p>
+            <p>© Mohamed Sharuk</p>
 
-            <p>Video Editor · Content Creator · Digital Marketer</p>
+            <p>Digital Marketer · Content Creator · Video Editor</p>
 
             <a
               href="#home"

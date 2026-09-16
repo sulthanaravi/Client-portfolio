@@ -9,17 +9,14 @@ function About() {
         overflow-hidden
         bg-[#0f0f0f]
         px-5
-        py-20
+        py-10
         text-white
 
         sm:px-8
-        sm:py-24
 
         md:px-12
-        md:py-28
 
         lg:px-20
-        lg:py-32
       "
     >
       {/* GRID BACKGROUND */}
@@ -44,21 +41,21 @@ function About() {
           transition={{ duration: 0.8 }}
           className="mb-12 sm:mb-16 md:mb-20"
         >
-          <p
-            className="
-              mb-4
-              text-[10px]
-              font-bold
-              tracking-[0.35em]
-              text-neutral-500
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-10 bg-white/50" />
 
-              sm:text-xs
-              md:text-sm
-            "
-          >
-            ABOUT ME
-          </p>
-
+            <p
+              className="
+      text-xs
+      font-bold
+      uppercase
+      tracking-[0.3em]
+      text-white/50
+    "
+            >
+              ABOUT ME
+            </p>
+          </div>
           <h2
             className="
               max-w-4xl
@@ -126,8 +123,8 @@ function About() {
                   lg:text-xl
                 "
               >
-                I’m Mohamed Sharuk, a passionate Video Editor, Content Creator,
-                and aspiring Digital Marketer with a strong interest in creative
+                I’m Mohamed Sharuk, a passionate Digital Marketer, Video Editor,
+                and aspiring Content Creator with a strong interest in creative
                 communication. With 2 years of experience in video editing and
                 content creation, I also have a strong ability in storytelling
                 and content writing, allowing me to turn ideas into engaging and
@@ -441,7 +438,47 @@ function About() {
                   md:w-2
                 "
               />
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="
+                absolute
+                h-48
+                w-48
 
+                sm:h-60
+                sm:w-60
+
+                md:h-72
+                md:w-72
+
+                lg:h-80
+                lg:w-80
+              "
+              >
+                <span
+                  className="
+                  absolute
+                  left-1/2
+                  top-0
+                  h-2
+                  w-2
+                  -translate-x-1/2
+                  rounded-full
+                  bg-white
+                  shadow-[0_0_15px_rgba(255,255,255,0.7)]
+
+                  sm:h-2.5
+                  sm:w-2.5
+                "
+                />
+              </motion.div>
               {/* LEFT BOTTOM DOT */}
 
               <motion.span
@@ -470,29 +507,6 @@ function About() {
             </motion.div>
           </div>
         </div>
-
-        {/* ================= BOTTOM LINE ================= */}
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="
-            mt-16
-            flex
-            items-center
-            justify-between
-            border-t
-            border-neutral-800
-            pt-5
-
-            sm:mt-20
-            sm:pt-6
-
-            md:mt-24
-          "
-        ></motion.div>
       </div>
     </section>
   );

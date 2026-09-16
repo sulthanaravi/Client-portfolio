@@ -69,17 +69,16 @@ function Skills() {
         overflow-hidden
         bg-[#0f0f0f]
         px-5
-        py-20
+        py-10
         text-white
 
         sm:px-8
-        sm:py-24
-
+       
         md:px-10
-        md:py-28
+      
 
         lg:px-14
-        lg:py-32
+     
 
         xl:px-20
       "
@@ -174,22 +173,6 @@ function Skills() {
               <span className="text-neutral-500">ideas to life.</span>
             </h2>
           </div>
-
-          {/* ================= HEADER DESCRIPTION ================= */}
-
-          <p
-            className="
-              max-w-sm
-              text-sm
-              leading-6
-              text-neutral-500
-
-              md:text-right
-            "
-          >
-            A combination of creative software, visual skills, and storytelling
-            techniques used to create engaging content.
-          </p>
         </motion.div>
 
         {/* ================= SKILLS GRID ================= */}
