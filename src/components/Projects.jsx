@@ -1,63 +1,111 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, X, Play } from "lucide-react";
+import { ArrowUpRight, X, Play, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const projects = [
-  // ================= ACTING CONTENT =================
+// =====================================================
+// PROJECT DATA
+// =====================================================
 
+const projects = [
   {
     id: 1,
-    category: "ACTING CONTENT",
+    category: "CONTENT CREATION",
     type: "video",
-    title: "Acting Performance 01",
-    description: "Acting performance and creative visual content.",
-    video: "/projects/acting-1.MOV",
-  },
-
-  {
-    id: 2,
-    category: "ACTING CONTENT",
-    type: "video",
-    title: "Acting Performance 02",
-    description: "Acting performance and creative visual content.",
-    video: "/projects/acting-2.MOV",
-  },
-
-  // ================= CONTENT WORKS =================
-
-  {
-    id: 3,
-    category: "CONTENT WORKS",
-    type: "video",
-    title: "Content Work 01",
-    description: "Creative video editing and content production.",
+    title: "Content Creation 01",
     video: "/projects/content-1.MOV",
   },
 
   {
-    id: 4,
-    category: "CONTENT WORKS",
+    id: 2,
+    category: "CONTENT CREATION",
     type: "video",
-    title: "Content Work 02",
-    description: "Creative video editing and content production.",
+    title: "Content Creation 02",
     video: "/projects/content-2.MOV",
   },
 
   {
-    id: 5,
-    category: "CONTENT WORKS",
+    id: 3,
+    category: "CONTENT CREATION",
     type: "video",
-    title: "Content Work 03",
-    description: "Creative video editing and content production.",
+    title: "Content Creation 03",
     video: "/projects/content-3.MOV",
+  },
+
+  {
+    id: 4,
+    category: "CLIENT PROJECTS",
+    type: "video",
+    title: "Client Project 01",
+    video: "/projects/client work-1.MP4",
+  },
+
+  {
+    id: 5,
+    category: "CLIENT PROJECTS",
+    type: "video",
+    title: "Client Project 02",
+    video: "/projects/client work-2.MP4",
+  },
+
+  {
+    id: 6,
+    category: "THEATRICAL MASHUPS",
+    type: "video",
+    title: "Theatrical Mashup 01",
+    video: "/projects/theatrical-mashup-1.mp4",
+  },
+
+  {
+    id: 7,
+    category: "ACTING PERFORMANCES",
+    type: "video",
+    title: "Acting Performance 01",
+    video: "/projects/acting-1.MOV",
+  },
+
+  {
+    id: 8,
+    category: "ACTING PERFORMANCES",
+    type: "video",
+    title: "Acting Performance 02",
+    video: "/projects/acting-2.MOV",
   },
 ];
 
+// =====================================================
+// MORE WORK LINKS
+// =====================================================
+
+const driveLinks = {
+  "CONTENT CREATION":
+    "https://drive.google.com/drive/folders/1bhFY15QmC8O3P8iRXGD1go2jodu92x9C",
+
+  "CLIENT PROJECTS":
+    "https://drive.google.com/drive/folders/1iZzWzfaHozMbLSeAuahqslzSwpU5sDKC",
+
+  "THEATRICAL MASHUPS":
+    "https://drive.google.com/drive/folders/1Tf_CRuOwgs-rhUeG7GJpqrfLKy-nrHtf",
+};
+
+// =====================================================
+// COMPONENT
+// =====================================================
+
 function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState("ALL");
 
-  const filters = ["ALL", "ACTING CONTENT", "CONTENT WORKS"];
+  // =====================================================
+  // FILTERS
+  // =====================================================
+
+  const filters = [
+    "ALL",
+    "CONTENT CREATION",
+    "CLIENT PROJECTS",
+    "THEATRICAL MASHUPS",
+    "ACTING PERFORMANCES",
+  ];
 
   const filteredProjects =
     activeFilter === "ALL"
@@ -69,7 +117,7 @@ function Projects() {
   // =====================================================
 
   const openProject = (project) => {
-    setSelectedProject(project);
+    setActiveProject(project);
   };
 
   // =====================================================
@@ -77,7 +125,7 @@ function Projects() {
   // =====================================================
 
   const closeProject = () => {
-    setSelectedProject(null);
+    setActiveProject(null);
   };
 
   // =====================================================
@@ -85,11 +133,11 @@ function Projects() {
   // =====================================================
 
   useEffect(() => {
-    if (!selectedProject) return;
+    if (!activeProject) return;
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setSelectedProject(null);
+        setActiveProject(null);
       }
     };
 
@@ -98,14 +146,14 @@ function Projects() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedProject]);
+  }, [activeProject]);
 
   // =====================================================
-  // BODY SCROLL LOCK
+  // LOCK BODY SCROLL
   // =====================================================
 
   useEffect(() => {
-    if (selectedProject) {
+    if (activeProject) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -114,7 +162,7 @@ function Projects() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selectedProject]);
+  }, [activeProject]);
 
   return (
     <section
@@ -123,13 +171,20 @@ function Projects() {
         relative
         overflow-hidden
         bg-[#0f0f0f]
-        px-6
-        py-20
+        px-4
+        py-10
         text-white
-        sm:px-10
-        md:px-14
-        lg:px-20
-        lg:py-28
+
+        sm:px-6
+        sm:py-12
+
+        md:px-8
+        md:py-14
+
+        lg:px-14
+        lg:py-16
+
+        xl:px-20
       "
     >
       {/* =====================================================
@@ -232,10 +287,12 @@ function Projects() {
           transition={{
             duration: 0.8,
           }}
-          className="mb-14"
+          className="mb-10 sm:mb-12 md:mb-14"
         >
-          <div className="mb-4 flex items-center gap-4">
-            <span className="h-px w-10 bg-white" />
+          {/* SECTION LABEL */}
+
+          <div className="mb-4 flex items-center gap-3 sm:gap-4">
+            <span className="h-px w-7 bg-white/50 sm:w-10" />
 
             <p
               className="
@@ -246,18 +303,23 @@ function Projects() {
                 text-white/50
               "
             >
-              Selected Work
+              Projects
             </p>
           </div>
+
+          {/* TITLE */}
 
           <div
             className="
               flex
               flex-col
-              justify-between
-              gap-8
+              gap-6
+
+              sm:gap-8
+
               lg:flex-row
               lg:items-end
+              lg:justify-between
             "
           >
             <h2
@@ -265,9 +327,13 @@ function Projects() {
                 text-5xl
                 font-black
                 uppercase
-                leading-[0.85]
+                leading-[0.88]
                 tracking-[-0.06em]
+
                 sm:text-6xl
+
+                md:text-7xl
+
                 lg:text-8xl
               "
             >
@@ -275,19 +341,6 @@ function Projects() {
               <br />
               <span className="text-white/25">Works.</span>
             </h2>
-
-            <p
-              className="
-                max-w-md
-                text-sm
-                leading-7
-                text-white/45
-                sm:text-base
-              "
-            >
-              A collection of acting performances, creative edits, and content
-              projects crafted through storytelling and visual creativity.
-            </p>
           </div>
         </motion.div>
 
@@ -309,40 +362,74 @@ function Projects() {
             duration: 0.6,
           }}
           className="
-            mb-10
-            flex
-            flex-wrap
-            gap-2
+            mb-8
             border-y
             border-white/10
-            py-4
+            py-3
+
+            sm:mb-10
+            sm:py-4
           "
         >
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActiveFilter(filter)}
-              className={`
-                rounded-full
-                px-4
-                py-2
-                text-[10px]
-                font-bold
-                uppercase
-                tracking-[0.15em]
-                transition-all
-                duration-300
-                ${
-                  activeFilter === filter
-                    ? "bg-white text-black"
-                    : "text-white/40 hover:bg-white/10 hover:text-white"
-                }
-              `}
-            >
-              {filter}
-            </button>
-          ))}
+          <div
+            className="
+              flex
+              w-full
+              gap-1.5
+              overflow-x-auto
+              pb-1
+
+              sm:flex-wrap
+              sm:justify-center
+              sm:gap-2
+              sm:overflow-visible
+              sm:pb-0
+
+              lg:justify-start
+            "
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActiveFilter(filter)}
+                className={`
+                  shrink-0
+                  whitespace-nowrap
+                  rounded-full
+                  px-3
+                  py-2
+                  text-[8px]
+                  font-bold
+                  uppercase
+                  tracking-[0.12em]
+                  transition-all
+                  duration-300
+
+                  sm:px-4
+                  sm:py-2
+                  sm:text-[9px]
+                  sm:tracking-[0.15em]
+
+                  md:px-5
+                  md:py-2.5
+                  md:text-[10px]
+
+                  ${
+                    activeFilter === filter
+                      ? "bg-white text-black"
+                      : "text-white/40 hover:bg-white/10 hover:text-white"
+                  }
+                `}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* =====================================================
@@ -355,9 +442,13 @@ function Projects() {
             grid
             w-full
             grid-cols-1
-            gap-5
+            gap-4
+
             sm:grid-cols-2
+            sm:gap-5
+
             lg:grid-cols-3
+            lg:gap-5
           "
         >
           <AnimatePresence mode="popLayout">
@@ -388,14 +479,19 @@ function Projects() {
                   w-full
                   cursor-pointer
                   overflow-hidden
-                  rounded-2xl
+                  rounded-xl
                   border
                   border-white/10
                   bg-[#181818]
                   transition-all
                   duration-500
-                  hover:-translate-y-2
+
+                  sm:rounded-2xl
+
+                  hover:-translate-y-1
                   hover:border-white/25
+
+                  lg:hover:-translate-y-2
                 "
               >
                 {/* =================================================
@@ -411,9 +507,7 @@ function Projects() {
                     bg-[#222222]
                   "
                 >
-                  {/* =================================================
-                      LOOPING MUTED VIDEO
-                  ================================================= */}
+                  {/* LOOPING MUTED VIDEO */}
 
                   <video
                     src={project.video}
@@ -434,7 +528,7 @@ function Projects() {
                     "
                   />
 
-                  {/* Dark Overlay */}
+                  {/* SOFT OVERLAY */}
 
                   <div
                     className="
@@ -447,24 +541,28 @@ function Projects() {
                     "
                   />
 
-                  {/* Large Number */}
+                  {/* LARGE NUMBER */}
 
                   <div
                     className="
                       absolute
-                      left-6
-                      top-6
+                      left-4
+                      top-4
                       z-10
-                      text-7xl
+                      text-5xl
                       font-black
                       tracking-[-0.08em]
                       text-white/[0.08]
+
+                      sm:left-6
+                      sm:top-6
+                      sm:text-7xl
                     "
                   >
                     {String(index + 1).padStart(2, "0")}
                   </div>
 
-                  {/* Center Play Button */}
+                  {/* PLAY BUTTON */}
 
                   <div
                     className="
@@ -473,8 +571,8 @@ function Projects() {
                       top-1/2
                       z-10
                       flex
-                      h-16
-                      w-16
+                      h-12
+                      w-12
                       -translate-x-1/2
                       -translate-y-1/2
                       items-center
@@ -487,40 +585,67 @@ function Projects() {
                       backdrop-blur-md
                       transition-all
                       duration-500
+
+                      sm:h-14
+                      sm:w-14
+
+                      md:h-16
+                      md:w-16
+
                       group-hover:scale-110
                       group-hover:bg-white
                       group-hover:text-black
                     "
                   >
-                    <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
+                    <Play
+                      className="
+                        ml-0.5
+                        h-4
+                        w-4
+
+                        sm:h-5
+                        sm:w-5
+
+                        md:h-6
+                        md:w-6
+                      "
+                      fill="currentColor"
+                    />
                   </div>
 
-                  {/* Video Label */}
+                  {/* VIDEO LABEL */}
 
                   <div
                     className="
                       absolute
-                      right-5
-                      top-5
+                      right-3
+                      top-3
                       z-10
                       rounded-full
                       border
                       border-white/10
                       bg-black/40
-                      px-3
-                      py-1.5
-                      text-[8px]
+                      px-2.5
+                      py-1
+                      text-[7px]
                       font-bold
                       uppercase
-                      tracking-[0.2em]
+                      tracking-[0.15em]
                       text-white/70
                       backdrop-blur-md
+
+                      sm:right-5
+                      sm:top-5
+                      sm:px-3
+                      sm:py-1.5
+                      sm:text-[8px]
+                      sm:tracking-[0.2em]
                     "
                   >
                     VIDEO
                   </div>
 
-                  {/* Bottom Gradient */}
+                  {/* BOTTOM GRADIENT */}
 
                   <div
                     className="
@@ -537,7 +662,7 @@ function Projects() {
                     "
                   />
 
-                  {/* Bottom Content */}
+                  {/* BOTTOM CONTENT */}
 
                   <div
                     className="
@@ -545,60 +670,61 @@ function Projects() {
                       inset-x-0
                       bottom-0
                       z-20
-                      p-5
+                      flex
+                      items-center
+                      justify-between
+                      p-4
+
+                      sm:p-5
                     "
                   >
-                    <p
+                    <motion.p
+                      initial={{ opacity: 0, x: -15 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
                       className="
-                        mb-2
                         text-[9px]
-                        font-bold
+                        font-semibold
                         uppercase
-                        tracking-[0.25em]
-                        text-white/60
+                        tracking-[0.2em]
+                        text-white
+
+                        sm:text-[10px]
+                        sm:tracking-[0.25em]
                       "
                     >
                       {project.category}
-                    </p>
+                    </motion.p>
 
                     <div
                       className="
                         flex
-                        items-end
-                        justify-between
-                        gap-4
+                        h-8
+                        w-8
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-white
+                        text-black
+                        transition-transform
+                        duration-500
+
+                        sm:h-9
+                        sm:w-9
+
+                        group-hover:rotate-45
                       "
                     >
-                      <h3
+                      <ArrowUpRight
                         className="
-                          text-xl
-                          font-bold
-                          leading-tight
-                          tracking-tight
-                          sm:text-2xl
-                        "
-                      >
-                        {project.title}
-                      </h3>
+                          h-3.5
+                          w-3.5
 
-                      <div
-                        className="
-                          flex
-                          h-9
-                          w-9
-                          shrink-0
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-white
-                          text-black
-                          transition-transform
-                          duration-500
-                          group-hover:rotate-45
+                          sm:h-4
+                          sm:w-4
                         "
-                      >
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
+                      />
                     </div>
                   </div>
                 </div>
@@ -608,47 +734,90 @@ function Projects() {
         </motion.div>
 
         {/* =====================================================
-            BOTTOM TEXT
+            EXPLORE MORE
+            CONTENT + CLIENT PROJECTS + THEATRICAL MASHUPS
         ===================================================== */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.8,
-          }}
-          className="
-            mt-12
-            flex
-            items-center
-            justify-between
-            border-t
-            border-white/10
-            pt-6
-          "
-        >
-          <p
+        {driveLinks[activeFilter] && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
             className="
-              text-xs
-              uppercase
-              tracking-[0.15em]
-              text-white/30
+              mt-7
+              flex
+              justify-center
+
+              sm:mt-8
             "
           >
-            Video Editing · Acting · Content
-          </p>
+            <a
+              href={driveLinks[activeFilter]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2.5
+                rounded-full
+                border
+                border-white/15
+                bg-white/[0.03]
+                px-5
+                py-2.5
+                text-[8px]
+                font-bold
+                uppercase
+                tracking-[0.15em]
+                text-white/60
+                transition-all
+                duration-300
 
-          <p className="text-xs text-white/30">
-            {filteredProjects.length} Projects
-          </p>
-        </motion.div>
+                sm:gap-3
+                sm:px-6
+                sm:py-3
+                sm:text-[10px]
+                sm:tracking-[0.18em]
+
+                hover:border-white/30
+                hover:bg-white
+                hover:text-black
+              "
+            >
+              <span>
+                {activeFilter === "CONTENT CREATION"
+                  ? "Explore More Content"
+                  : activeFilter === "CLIENT PROJECTS"
+                    ? "Explore More Client Work"
+                    : "Explore More Theatrical Mashups"}
+              </span>
+
+              <ExternalLink
+                className="
+                  h-3
+                  w-3
+
+                  sm:h-3.5
+                  sm:w-3.5
+
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-0.5
+                  group-hover:-translate-y-0.5
+                "
+              />
+            </a>
+          </motion.div>
+        )}
       </div>
 
       {/* =====================================================
@@ -656,7 +825,7 @@ function Projects() {
       ===================================================== */}
 
       <AnimatePresence>
-        {selectedProject && (
+        {activeProject && (
           <motion.div
             initial={{
               opacity: 0,
@@ -676,9 +845,13 @@ function Projects() {
               justify-center
               overflow-y-auto
               bg-black/95
-              p-3
+              p-2
               backdrop-blur-md
-              sm:p-6
+
+              sm:p-4
+
+              md:p-6
+
               lg:p-8
             "
             onClick={closeProject}
@@ -707,15 +880,18 @@ function Projects() {
               className="
                 relative
                 flex
-                h-[90vh]
+                h-[94vh]
                 w-full
                 max-w-5xl
                 flex-col
                 overflow-hidden
-                rounded-2xl
+                rounded-xl
                 border
                 border-white/10
                 bg-[#0f0f0f]
+
+                sm:h-[92vh]
+                sm:rounded-2xl
               "
             >
               {/* =================================================
@@ -724,55 +900,36 @@ function Projects() {
 
               <div
                 className="
-                  relative
-                  z-20
                   flex
                   shrink-0
-                  items-start
-                  justify-between
-                  gap-5
+                  items-center
+                  justify-end
                   border-b
                   border-white/10
                   bg-[#111111]
-                  p-5
-                  sm:p-6
+                  p-4
+
+                  sm:p-5
+                  md:p-6
                 "
               >
-                <div className="min-w-0">
-                  <p
-                    className="
-                      mb-2
-                      text-[9px]
-                      font-bold
-                      uppercase
-                      tracking-[0.25em]
-                      text-white/40
-                    "
-                  >
-                    {selectedProject.category}
-                  </p>
+                {/* CLOSE BUTTON */}
 
-                  <h3
-                    className="
-                      text-xl
-                      font-bold
-                      tracking-tight
-                      sm:text-2xl
-                    "
-                  >
-                    {selectedProject.title}
-                  </h3>
-                </div>
-
-                {/* Close Button */}
-
-                <button
+                <motion.button
                   type="button"
                   onClick={closeProject}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.15 }}
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: 90,
+                  }}
+                  whileTap={{ scale: 0.9 }}
                   className="
                     flex
-                    h-10
-                    w-10
+                    h-9
+                    w-9
                     shrink-0
                     items-center
                     justify-center
@@ -780,20 +937,24 @@ function Projects() {
                     border
                     border-white/20
                     text-white/70
-                    transition-all
+                    transition-colors
                     duration-300
-                    hover:rotate-90
+
+                    hover:border-white
                     hover:bg-white
                     hover:text-black
+
+                    sm:h-10
+                    sm:w-10
                   "
                   aria-label="Close project"
                 >
-                  <X className="h-5 w-5" />
-                </button>
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                </motion.button>
               </div>
 
               {/* =================================================
-                  MODAL VIDEO
+                  VIDEO AREA
               ================================================= */}
 
               <div
@@ -816,8 +977,8 @@ function Projects() {
                   "
                 >
                   <video
-                    key={selectedProject.video}
-                    src={selectedProject.video}
+                    key={activeProject.video}
+                    src={activeProject.video}
                     controls
                     autoPlay
                     playsInline
@@ -842,37 +1003,28 @@ function Projects() {
                   z-20
                   flex
                   shrink-0
-                  flex-col
-                  gap-3
+                  items-center
+                  justify-end
                   border-t
                   border-white/10
                   bg-[#111111]
-                  p-5
-                  sm:flex-row
-                  sm:items-center
-                  sm:justify-between
-                  sm:p-6
+                  p-3
+
+                  sm:p-4
+
+                  md:p-5
                 "
               >
-                <p
-                  className="
-                    max-w-2xl
-                    text-sm
-                    leading-6
-                    text-white/45
-                  "
-                >
-                  {selectedProject.description}
-                </p>
-
                 <span
                   className="
-                    shrink-0
-                    text-[9px]
+                    text-[8px]
                     font-bold
                     uppercase
-                    tracking-[0.2em]
+                    tracking-[0.18em]
                     text-white/30
+
+                    sm:text-[9px]
+                    sm:tracking-[0.2em]
                   "
                 >
                   Mohamed Sharuk

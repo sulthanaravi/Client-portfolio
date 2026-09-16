@@ -4,6 +4,9 @@ import About from "./components/About";
 import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import TheatreResponse from "./components/MashupResponse";
+import ViewersFeedback from "./components/viewers-feedback";
+
 import Contact from "./components/Contact";
 
 function App() {
@@ -17,6 +20,8 @@ function App() {
         <Education />
         <Skills />
         <Projects />
+        <TheatreResponse />
+        <ViewersFeedback />
         <Contact />
       </main>
     </>
