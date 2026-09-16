@@ -1,4 +1,4 @@
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
@@ -8,16 +8,38 @@ const menuItems = [
   { name: "Education", href: "#education" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  {
+    name: "Responses",
+    children: [
+      {
+        name: "Viewer's Feedback",
+        href: "#viewers-feedback",
+      },
+      {
+        name: "Theatre Response",
+        href: "#theatre-response",
+      },
+    ],
+  },
   { name: "Contact", href: "#contact" },
 ];
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hovered, setHovered] = useState(null);
+  const [responsesOpen, setResponsesOpen] = useState(false);
+
+  const handleMenuClose = () => {
+    setMenuOpen(false);
+    setResponsesOpen(false);
+    setHovered(null);
+  };
 
   return (
     <>
-      {/* ================= NAVBAR BUTTON ================= */}
+      {/* =====================================================
+          NAVBAR BUTTON
+      ===================================================== */}
 
       <header
         className="
@@ -37,7 +59,10 @@ function Navbar() {
       >
         <motion.button
           type="button"
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={() => {
+            setMenuOpen((prev) => !prev);
+            setResponsesOpen(false);
+          }}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.9 }}
           aria-label={
@@ -116,7 +141,9 @@ function Navbar() {
         </motion.button>
       </header>
 
-      {/* ================= MENU ================= */}
+      {/* =====================================================
+          MENU
+      ===================================================== */}
 
       <AnimatePresence>
         {menuOpen && (
@@ -147,7 +174,10 @@ function Navbar() {
               top-[76px]
               z-[9998]
 
-              overflow-hidden
+              max-h-[calc(100vh-95px)]
+              overflow-y-auto
+              overflow-x-hidden
+
               rounded-3xl
 
               border
@@ -168,12 +198,16 @@ function Navbar() {
               lg:right-5
               lg:top-[106px]
 
-              lg:h-[480px]
+              lg:h-[520px]
+              lg:max-h-none
+              lg:overflow-hidden
 
               lg:rounded-[32px]
             "
           >
-            {/* ================= BACKGROUND DETAILS ================= */}
+            {/* =================================================
+                BACKGROUND DETAILS
+            ================================================= */}
 
             <motion.div
               animate={{
@@ -213,7 +247,9 @@ function Navbar() {
               "
             />
 
-            {/* ================= HEADER ================= */}
+            {/* =================================================
+                HEADER
+            ================================================= */}
 
             <div
               className="
@@ -280,7 +316,9 @@ function Navbar() {
               </motion.span>
             </div>
 
-            {/* ================= NAV LINKS ================= */}
+            {/* =================================================
+                NAV LINKS
+            ================================================= */}
 
             <nav
               className="
@@ -300,162 +338,460 @@ function Navbar() {
                 lg:pt-5
               "
             >
-              {menuItems.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  onMouseEnter={() => setHovered(index)}
-                  onMouseLeave={() => setHovered(null)}
-                  initial={{
-                    opacity: 0,
-                    x: -25,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    delay: 0.08 + index * 0.07,
-                    duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="
-                    group
-                    relative
-                    flex
-                    items-center
+              {menuItems.map((item, index) => {
+                const hasChildren = item.children?.length > 0;
 
-                    border-b
-                    border-white/[0.07]
+                return (
+                  <div key={item.name} className="relative">
+                    {/* =========================================
+                        NORMAL NAV ITEM
+                    ========================================= */}
 
-                    py-3
+                    {!hasChildren ? (
+                      <motion.a
+                        href={item.href}
+                        onClick={handleMenuClose}
+                        onMouseEnter={() => setHovered(index)}
+                        onMouseLeave={() => setHovered(null)}
+                        initial={{
+                          opacity: 0,
+                          x: -25,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay: 0.08 + index * 0.07,
+                          duration: 0.4,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="
+                          group
+                          relative
+                          flex
+                          items-center
 
-                    sm:py-4
+                          border-b
+                          border-white/[0.07]
 
-                    lg:py-3
-                  "
-                >
-                  {/* NUMBER */}
+                          py-3
 
-                  <motion.span
-                    animate={{
-                      opacity: hovered === null || hovered === index ? 1 : 0.2,
-                      x: hovered === index ? 8 : 0,
-                    }}
-                    transition={{
-                      duration: 0.25,
-                    }}
-                    className="
-                      mr-5
-                      w-7
+                          sm:py-4
 
-                      text-[10px]
-                      font-medium
-                      tracking-widest
-                      text-white/30
+                          lg:py-3
+                        "
+                      >
+                        {/* NUMBER */}
 
-                      lg:mr-8
-                      lg:w-8
-                    "
-                  >
-                    0{index + 1}
-                  </motion.span>
+                        <motion.span
+                          animate={{
+                            opacity:
+                              hovered === null || hovered === index ? 1 : 0.2,
+                            x: hovered === index ? 8 : 0,
+                          }}
+                          transition={{
+                            duration: 0.25,
+                          }}
+                          className="
+                            mr-5
+                            w-7
 
-                  {/* LINK */}
+                            text-[10px]
+                            font-medium
+                            tracking-widest
+                            text-white/30
 
-                  <motion.span
-                    animate={{
-                      x: hovered === index ? 12 : 0,
-                      opacity: hovered === null || hovered === index ? 1 : 0.45,
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: "easeOut",
-                    }}
-                    className="
-                      text-base
-                      font-bold
-                      tracking-[0.14em]
-                      text-white
+                            lg:mr-8
+                            lg:w-8
+                          "
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </motion.span>
 
-                      sm:text-lg
+                        {/* LINK */}
 
-                      lg:text-[18px]
-                      lg:tracking-[0.12em]
-                    "
-                  >
-                    {item.name.toUpperCase()}
-                  </motion.span>
+                        <motion.span
+                          animate={{
+                            x: hovered === index ? 12 : 0,
+                            opacity:
+                              hovered === null || hovered === index ? 1 : 0.45,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            ease: "easeOut",
+                          }}
+                          className="
+                            text-base
+                            font-bold
+                            tracking-[0.14em]
+                            text-white
 
-                  {/* ARROW */}
+                            sm:text-lg
 
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      x: -10,
-                      rotate: -20,
-                    }}
-                    animate={{
-                      opacity: hovered === index ? 1 : 0,
-                      x: hovered === index ? 12 : -10,
-                      rotate: hovered === index ? 0 : -20,
-                    }}
-                    transition={{
-                      duration: 0.25,
-                    }}
-                    className="ml-2 text-white"
-                  >
-                    <ArrowUpRight size={19} strokeWidth={1.8} />
-                  </motion.div>
+                            lg:text-[18px]
+                            lg:tracking-[0.12em]
+                          "
+                        >
+                          {item.name.toUpperCase()}
+                        </motion.span>
 
-                  {/* HOVER LINE */}
+                        {/* ARROW */}
 
-                  <motion.div
-                    initial={{
-                      width: 0,
-                    }}
-                    animate={{
-                      width: hovered === index ? "100%" : "0%",
-                    }}
-                    transition={{
-                      duration: 0.35,
-                    }}
-                    className="
-                      pointer-events-none
-                      absolute
-                      bottom-[-1px]
-                      left-0
-                      h-px
-                      bg-white/60
-                    "
-                  />
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            x: -10,
+                            rotate: -20,
+                          }}
+                          animate={{
+                            opacity: hovered === index ? 1 : 0,
+                            x: hovered === index ? 12 : -10,
+                            rotate: hovered === index ? 0 : -20,
+                          }}
+                          transition={{
+                            duration: 0.25,
+                          }}
+                          className="ml-2 text-white"
+                        >
+                          <ArrowUpRight size={19} strokeWidth={1.8} />
+                        </motion.div>
 
-                  {/* ACTIVE DOT */}
+                        {/* HOVER LINE */}
 
-                  <motion.div
-                    initial={{
-                      scale: 0,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      scale: hovered === index ? 1 : 0,
-                      opacity: hovered === index ? 1 : 0,
-                    }}
-                    className="
-                      absolute
-                      right-2
-                      h-1.5
-                      w-1.5
-                      rounded-full
-                      bg-white
-                    "
-                  />
-                </motion.a>
-              ))}
+                        <motion.div
+                          initial={{
+                            width: 0,
+                          }}
+                          animate={{
+                            width: hovered === index ? "100%" : "0%",
+                          }}
+                          transition={{
+                            duration: 0.35,
+                          }}
+                          className="
+                            pointer-events-none
+                            absolute
+                            bottom-[-1px]
+                            left-0
+                            h-px
+                            bg-white/60
+                          "
+                        />
+
+                        {/* ACTIVE DOT */}
+
+                        <motion.div
+                          initial={{
+                            scale: 0,
+                            opacity: 0,
+                          }}
+                          animate={{
+                            scale: hovered === index ? 1 : 0,
+                            opacity: hovered === index ? 1 : 0,
+                          }}
+                          className="
+                            absolute
+                            right-2
+                            h-1.5
+                            w-1.5
+                            rounded-full
+                            bg-white
+                          "
+                        />
+                      </motion.a>
+                    ) : (
+                      /* =======================================
+                         RESPONSES
+                      ======================================= */
+
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                          x: -25,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay: 0.08 + index * 0.07,
+                          duration: 0.4,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="
+                          border-b
+                          border-white/[0.07]
+                        "
+                      >
+                        {/* RESPONSES MAIN BUTTON */}
+
+                        <button
+                          type="button"
+                          onClick={() => setResponsesOpen((prev) => !prev)}
+                          onMouseEnter={() => setHovered(index)}
+                          onMouseLeave={() => setHovered(null)}
+                          className="
+                            group
+                            relative
+                            flex
+                            w-full
+                            items-center
+
+                            py-3
+
+                            sm:py-4
+
+                            lg:py-3
+                          "
+                        >
+                          {/* NUMBER */}
+
+                          <motion.span
+                            animate={{
+                              opacity:
+                                hovered === null || hovered === index ? 1 : 0.2,
+                              x: hovered === index ? 8 : 0,
+                            }}
+                            transition={{
+                              duration: 0.25,
+                            }}
+                            className="
+                              mr-5
+                              w-7
+
+                              text-left
+                              text-[10px]
+                              font-medium
+                              tracking-widest
+                              text-white/30
+
+                              lg:mr-8
+                              lg:w-8
+                            "
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </motion.span>
+
+                          {/* RESPONSES TEXT */}
+
+                          <motion.span
+                            animate={{
+                              x: hovered === index ? 12 : 0,
+                              opacity:
+                                hovered === null || hovered === index
+                                  ? 1
+                                  : 0.45,
+                            }}
+                            transition={{
+                              duration: 0.3,
+                              ease: "easeOut",
+                            }}
+                            className="
+                              text-base
+                              font-bold
+                              tracking-[0.14em]
+                              text-white
+
+                              sm:text-lg
+
+                              lg:text-[18px]
+                              lg:tracking-[0.12em]
+                            "
+                          >
+                            RESPONSES
+                          </motion.span>
+
+                          {/* CHEVRON */}
+
+                          <motion.div
+                            animate={{
+                              rotate: responsesOpen ? 180 : 0,
+                              x: hovered === index ? 8 : 0,
+                            }}
+                            transition={{
+                              duration: 0.3,
+                            }}
+                            className="
+                              ml-3
+                              text-white/50
+                            "
+                          >
+                            <ChevronDown size={18} strokeWidth={1.8} />
+                          </motion.div>
+
+                          {/* HOVER ARROW */}
+
+                          <motion.div
+                            initial={{
+                              opacity: 0,
+                              x: -10,
+                              rotate: -20,
+                            }}
+                            animate={{
+                              opacity: hovered === index ? 1 : 0,
+                              x: hovered === index ? 12 : -10,
+                              rotate: hovered === index ? 0 : -20,
+                            }}
+                            transition={{
+                              duration: 0.25,
+                            }}
+                            className="ml-2 text-white"
+                          >
+                            <ArrowUpRight size={19} strokeWidth={1.8} />
+                          </motion.div>
+
+                          {/* ACTIVE DOT */}
+
+                          <motion.div
+                            initial={{
+                              scale: 0,
+                              opacity: 0,
+                            }}
+                            animate={{
+                              scale: hovered === index ? 1 : 0,
+                              opacity: hovered === index ? 1 : 0,
+                            }}
+                            className="
+                              absolute
+                              right-2
+                              h-1.5
+                              w-1.5
+                              rounded-full
+                              bg-white
+                            "
+                          />
+                        </button>
+
+                        {/* =====================================
+                            RESPONSE SUBMENU
+                        ===================================== */}
+
+                        <AnimatePresence initial={false}>
+                          {responsesOpen && (
+                            <motion.div
+                              initial={{
+                                height: 0,
+                                opacity: 0,
+                              }}
+                              animate={{
+                                height: "auto",
+                                opacity: 1,
+                              }}
+                              exit={{
+                                height: 0,
+                                opacity: 0,
+                              }}
+                              transition={{
+                                duration: 0.35,
+                                ease: [0.22, 1, 0.36, 1],
+                              }}
+                              className="overflow-hidden"
+                            >
+                              <div
+                                className="
+                                  mb-3
+                                  ml-12
+                                  border-l
+                                  border-white/10
+                                  pl-5
+
+                                  sm:ml-14
+
+                                  lg:ml-16
+                                  lg:pl-6
+                                "
+                              >
+                                {item.children.map((child, childIndex) => (
+                                  <motion.a
+                                    key={child.name}
+                                    href={child.href}
+                                    onClick={handleMenuClose}
+                                    initial={{
+                                      opacity: 0,
+                                      x: -15,
+                                    }}
+                                    animate={{
+                                      opacity: 1,
+                                      x: 0,
+                                    }}
+                                    transition={{
+                                      delay: childIndex * 0.08,
+                                      duration: 0.3,
+                                    }}
+                                    className="
+                                        group/sub
+                                        relative
+                                        flex
+                                        items-center
+                                        gap-3
+                                        py-2.5
+
+                                        text-xs
+                                        font-medium
+                                        uppercase
+                                        tracking-[0.16em]
+                                        text-white/45
+
+                                        transition-colors
+                                        duration-300
+
+                                        hover:text-white
+
+                                        sm:text-sm
+
+                                        lg:py-2
+                                        lg:text-[11px]
+                                      "
+                                  >
+                                    {/* SMALL NUMBER */}
+
+                                    <span
+                                      className="
+                                          text-[8px]
+                                          tracking-widest
+                                          text-white/20
+
+                                          lg:text-[9px]
+                                        "
+                                    >
+                                      0{childIndex + 1}
+                                    </span>
+
+                                    {/* CHILD NAME */}
+
+                                    <span>{child.name}</span>
+
+                                    {/* CHILD ARROW */}
+
+                                    <ArrowUpRight
+                                      className="
+                                          h-3.5
+                                          w-3.5
+                                          opacity-0
+                                          transition-all
+                                          duration-300
+                                          group-hover/sub:translate-x-1
+                                          group-hover/sub:-translate-y-1
+                                          group-hover/sub:opacity-100
+                                        "
+                                    />
+                                  </motion.a>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
 
-            {/* ================= BOTTOM TEXT ================= */}
+            {/* =================================================
+                BOTTOM TEXT
+            ================================================= */}
 
             <motion.div
               initial={{

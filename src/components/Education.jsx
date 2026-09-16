@@ -26,19 +26,20 @@ function Education() {
       className="
         relative
         overflow-hidden
-  bg-[#0f0f0f]
-          px-5
-        py-24
+        bg-[#0f0f0f]
+        px-5
+        py-10
+        pb-20
         text-white
 
-        sm:px-8
-        sm:py-28
+       sm:px-8
+        
 
         md:px-12
-        md:py-32
+      
 
         lg:px-20
-        lg:py-36
+       
       "
     >
       {/* ================= BACKGROUND GRID ================= */}
@@ -48,19 +49,29 @@ function Education() {
           pointer-events-none
           absolute
           inset-0
-          opacity-[0.055]
-           bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
           bg-[size:70px_70px]
+          opacity-[0.055]
         "
       />
 
       {/* ================= BACKGROUND GLOW ================= */}
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
+        initial={{
+          opacity: 0,
+          scale: 0.5,
+        }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+        }}
+        viewport={{
+          once: true,
+        }}
+        transition={{
+          duration: 1,
+        }}
         className="
           pointer-events-none
           absolute
@@ -75,9 +86,17 @@ function Education() {
       />
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        initial={{
+          opacity: 0,
+          scale: 0.5,
+        }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+        }}
+        viewport={{
+          once: true,
+        }}
         transition={{
           duration: 1,
           delay: 0.2,
@@ -103,7 +122,7 @@ function Education() {
         <motion.div
           initial={{
             opacity: 0,
-            y: 35,
+            y: 25,
           }}
           whileInView={{
             opacity: 1,
@@ -117,41 +136,36 @@ function Education() {
             duration: 0.7,
           }}
           className="
-            mb-14
+            mb-8
 
-            sm:mb-16
+            sm:mb-10
 
-            md:mb-20
+            md:mb-12
           "
         >
-          <div className="flex items-center gap-4">
-            <span
-              className="
-                h-px
-                w-10
-                bg-white/40
+          {/* MY JOURNEY */}
 
-                sm:w-14
-              "
-            />
+          <div className="mb-4 flex items-center gap-4">
+            <span className="h-px w-10 bg-white/50" />
 
             <p
               className="
-                text-[10px]
-                font-bold
-                tracking-[0.35em]
-                text-neutral-500
-
-                sm:text-xs
-              "
+      text-xs
+      font-bold
+      uppercase
+      tracking-[0.3em]
+      text-white/50
+    "
             >
               MY JOURNEY
             </p>
           </div>
 
+          {/* HEADING */}
+
           <h2
             className="
-              mt-5
+              mt-4
               text-[42px]
               font-black
               leading-[0.95]
@@ -177,15 +191,15 @@ function Education() {
           className="
             grid
             grid-cols-1
-            gap-16
+            gap-12
 
-            sm:gap-20
+            sm:gap-16
 
             lg:grid-cols-[1.1fr_0.9fr]
             lg:items-center
-            lg:gap-16
+            lg:gap-14
 
-            xl:gap-24
+            xl:gap-20
           "
         >
           {/* ================= EDUCATION CARDS ================= */}
@@ -388,16 +402,16 @@ function Education() {
             className="
               relative
               flex
-              min-h-[320px]
+              min-h-[280px]
               w-full
               items-center
               justify-center
 
-              sm:min-h-[380px]
+              sm:min-h-[340px]
 
-              md:min-h-[420px]
+              md:min-h-[380px]
 
-              lg:min-h-[460px]
+              lg:min-h-[420px]
             "
           >
             {/* ================= OUTER ROTATING CIRCLE ================= */}
@@ -413,15 +427,15 @@ function Education() {
               }}
               className="
                 absolute
-                h-52
-                w-52
+                h-48
+                w-48
                 rounded-full
                 border
                 border-dashed
                 border-white/10
 
-                sm:h-64
-                sm:w-64
+                sm:h-60
+                sm:w-60
 
                 md:h-72
                 md:w-72
@@ -444,8 +458,8 @@ function Education() {
               }}
               className="
                 absolute
-                h-40
-                w-40
+                h-36
+                w-36
                 rounded-full
                 border
                 border-white/[0.08]
@@ -475,8 +489,8 @@ function Education() {
               }}
               className="
                 absolute
-                h-32
-                w-32
+                h-28
+                w-28
                 rounded-full
                 border
                 border-white/10
@@ -608,11 +622,11 @@ function Education() {
               }}
               className="
                 absolute
-                h-52
-                w-52
+                h-48
+                w-48
 
-                sm:h-64
-                sm:w-64
+                sm:h-60
+                sm:w-60
 
                 md:h-72
                 md:w-72
