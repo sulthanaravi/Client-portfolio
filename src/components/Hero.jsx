@@ -20,17 +20,18 @@ function Hero() {
         loop
         playsInline
         preload="auto"
-        src="/bg-video/background.MOV"
         className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-0
-          h-full
-          w-full
-          object-cover
-        "
-      />
+    pointer-events-none
+    absolute
+    inset-0
+    z-0
+    h-full
+    w-full
+    object-cover
+  "
+      >
+        <source src="/bg-video/background.mp4" type="video/mp4" />
+      </video>
 
       {/* VIDEO OVERLAY */}
       <div
