@@ -12,7 +12,7 @@ const projects = [
     category: "CONTENT CREATION",
     type: "video",
     title: "Content Creation 01",
-    video: "/projects/content-1.MOV",
+    video: "/projects/content-1.mp4",
   },
 
   {
@@ -20,7 +20,7 @@ const projects = [
     category: "CONTENT CREATION",
     type: "video",
     title: "Content Creation 02",
-    video: "/projects/content-2.MOV",
+    video: "/projects/content-2.mp4",
   },
 
   {
@@ -28,7 +28,7 @@ const projects = [
     category: "CONTENT CREATION",
     type: "video",
     title: "Content Creation 03",
-    video: "/projects/content-3.MOV",
+    video: "/projects/content-3.mp4",
   },
 
   {
@@ -60,7 +60,7 @@ const projects = [
     category: "ACTING PERFORMANCES",
     type: "video",
     title: "Acting Performance 01",
-    video: "/projects/acting-1.MOV",
+    video: "/projects/acting-1.mp4",
   },
 
   {
@@ -68,7 +68,7 @@ const projects = [
     category: "ACTING PERFORMANCES",
     type: "video",
     title: "Acting Performance 02",
-    video: "/projects/acting-2.MOV",
+    video: "/projects/acting-2.mp4",
   },
 ];
 
