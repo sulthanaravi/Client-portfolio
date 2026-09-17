@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Play, ExternalLink } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // =====================================================
 // PROJECT DATA
@@ -86,55 +86,59 @@ const driveLinks = {
   "THEATRICAL MASHUPS":
     "https://drive.google.com/drive/folders/1Tf_CRuOwgs-rhUeG7GJpqrfLKy-nrHtf",
 };
+
+// =====================================================
+// LAZY PROJECT VIDEO
+// =====================================================
+
 function ProjectVideo({ src, className }) {
   const videoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
+
     if (!video) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+
+          // Stop observing after the video starts loading.
+          observer.disconnect();
+        }
       },
       {
-        rootMargin: "200px 0px",
-        threshold: 0.1,
+        // Start loading before the card reaches the screen.
+        rootMargin: "400px 0px",
+        threshold: 0,
       },
     );
 
     observer.observe(video);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isVisible) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isVisible]);
 
   return (
     <video
       ref={videoRef}
-      src={isVisible ? src : undefined}
+      src={shouldLoad ? src : undefined}
       muted
       loop
       playsInline
-      preload="none"
-      onLoadedData={(e) => {
-        e.currentTarget.play().catch(() => {});
+      preload={shouldLoad ? "auto" : "none"}
+      onCanPlay={(event) => {
+        event.currentTarget.play().catch(() => {});
       }}
       className={className}
     />
   );
 }
+
 // =====================================================
 // COMPONENT
 // =====================================================
@@ -212,6 +216,10 @@ function Projects() {
     };
   }, [activeProject]);
 
+  // =====================================================
+  // RENDER
+  // =====================================================
+
   return (
     <section
       id="projects"
@@ -249,7 +257,7 @@ function Projects() {
           bg-[size:70px_70px]
         "
       >
-        {/* Top Line */}
+        {/* TOP LINE */}
 
         <div
           className="
@@ -263,7 +271,7 @@ function Projects() {
           "
         />
 
-        {/* Rotating Circle */}
+        {/* ROTATING CIRCLE */}
 
         <motion.div
           animate={{
@@ -286,7 +294,7 @@ function Projects() {
           "
         />
 
-        {/* Floating Dot */}
+        {/* FLOATING DOT */}
 
         <motion.div
           animate={{
@@ -555,15 +563,10 @@ function Projects() {
                     bg-[#222222]
                   "
                 >
-                  {/* LOOPING MUTED VIDEO */}
+                  {/* LAZY LOADED LOOPING VIDEO */}
 
-                  <video
+                  <ProjectVideo
                     src={project.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
                     className="
                       absolute
                       inset-0
@@ -727,9 +730,17 @@ function Projects() {
                     "
                   >
                     <motion.p
-                      initial={{ opacity: 0, x: -15 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
+                      initial={{
+                        opacity: 0,
+                        x: -15,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                      }}
                       className="
                         text-[9px]
                         font-semibold
@@ -783,7 +794,6 @@ function Projects() {
 
         {/* =====================================================
             EXPLORE MORE
-            CONTENT + CLIENT PROJECTS + THEATRICAL MASHUPS
         ===================================================== */}
 
         {driveLinks[activeFilter] && (
@@ -966,14 +976,25 @@ function Projects() {
                 <motion.button
                   type="button"
                   onClick={closeProject}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.15 }}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.15,
+                  }}
                   whileHover={{
                     scale: 1.1,
                     rotate: 90,
                   }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{
+                    scale: 0.9,
+                  }}
                   className="
                     flex
                     h-9
@@ -1030,7 +1051,7 @@ function Projects() {
                     controls
                     autoPlay
                     playsInline
-                    preload="none"
+                    preload="auto"
                     className="
                       block
                       h-full

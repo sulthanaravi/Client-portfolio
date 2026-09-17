@@ -24,18 +24,26 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden         bg-[#0f0f0f]
- px-6 py-10 text-black dark:bg-[#111111] dark:text-white"
+      className="
+        relative
+        overflow-hidden
+        bg-[#0f0f0f]
+        px-6
+        py-10
+        text-white
+      "
     >
       {/* ================= BACKGROUND ================= */}
 
       <div
-        className="     pointer-events-none
+        className="
+          pointer-events-none
           absolute
           inset-0
-          opacity-[0.08]
           bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
-          bg-[size:70px_70px]"
+          bg-[size:70px_70px]
+          opacity-[0.08]
+        "
       >
         <motion.div
           animate={{ rotate: 360 }}
@@ -44,7 +52,18 @@ function Contact() {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -right-32 -top-32 h-80 w-80 rounded-full border border-black/10 dark:border-white/10 sm:h-[450px] sm:w-[450px]"
+          className="
+            absolute
+            -right-32
+            -top-32
+            h-80
+            w-80
+            rounded-full
+            border
+            border-white/10
+            sm:h-[450px]
+            sm:w-[450px]
+          "
         />
 
         <motion.div
@@ -57,7 +76,15 @@ function Contact() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-20 left-[8%] h-2 w-2 rounded-full bg-black dark:bg-white"
+          className="
+            absolute
+            bottom-20
+            left-[8%]
+            h-2
+            w-2
+            rounded-full
+            bg-white
+          "
         />
 
         <motion.div
@@ -70,10 +97,28 @@ function Contact() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute right-[20%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-black dark:bg-white"
+          className="
+            absolute
+            bottom-[20%]
+            right-[20%]
+            h-1.5
+            w-1.5
+            rounded-full
+            bg-white
+          "
         />
 
-        <div className="absolute left-1/2 top-1/2 h-px w-[80%] -translate-x-1/2 bg-black/5 dark:bg-white/5" />
+        <div
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            h-px
+            w-[80%]
+            -translate-x-1/2
+            bg-white/5
+          "
+        />
       </div>
 
       {/* ================= MAIN CONTAINER ================= */}
@@ -88,14 +133,16 @@ function Contact() {
           transition={{ duration: 0.6 }}
           className="mb-12 flex items-center gap-4"
         >
-          <span className="h-px w-10   bg-white/50" />
+          <span className="h-px w-10 bg-white/50" />
 
           <p
-            className=" text-xs
-      font-bold
-      uppercase
-      tracking-[0.3em]
-      text-white/50"
+            className="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.3em]
+              text-white/50
+            "
           >
             Get In Touch
           </p>
@@ -103,7 +150,15 @@ function Contact() {
 
         {/* ================= MAIN CONTENT ================= */}
 
-        <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
+        <div
+          className="
+            grid
+            gap-14
+            lg:grid-cols-[1.15fr_0.85fr]
+            lg:items-end
+            lg:gap-20
+          "
+        >
           {/* ================= LEFT SIDE ================= */}
 
           <div>
@@ -112,11 +167,19 @@ function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
-              className="text-[14vw] font-black uppercase leading-[0.82] tracking-[-0.07em] sm:text-7xl lg:text-[7.5vw]"
+              className="
+                text-[14vw]
+                font-black
+                uppercase
+                leading-[0.82]
+                tracking-[-0.07em]
+                sm:text-7xl
+                lg:text-[7.5vw]
+              "
             >
               Let's
               <br />
-              <span className="text-black/25 dark:text-white/25">Create.</span>
+              <span className="text-white/25">Create.</span>
             </motion.h2>
 
             <motion.p
@@ -127,7 +190,14 @@ function Contact() {
                 duration: 0.7,
                 delay: 0.2,
               }}
-              className="mt-8 max-w-xl text-sm leading-7 text-black/55 dark:text-white/50 sm:text-base"
+              className="
+                mt-8
+                max-w-xl
+                text-sm
+                leading-7
+                text-white/50
+                sm:text-base
+              "
             >
               Have a project, collaboration, or creative idea in mind? Let's
               turn it into something meaningful, engaging, and visually
@@ -147,12 +217,39 @@ function Contact() {
               className="mt-8 flex items-center gap-3"
             >
               <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-black/30 dark:bg-white/30" />
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-white/30
+                  "
+                />
 
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-black dark:bg-white" />
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    h-3
+                    w-3
+                    rounded-full
+                    bg-white
+                  "
+                />
               </span>
 
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50 dark:text-white/40">
+              <span
+                className="
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.18em]
+                  text-white/40
+                "
+              >
                 Available for creative projects
               </span>
             </motion.div>
@@ -165,17 +262,35 @@ function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
-            className="rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl dark:border-white/10 dark:bg-[#181818] sm:p-8"
+            className="
+              rounded-[2rem]
+              border
+              border-black/10
+              bg-white
+              p-6
+              text-black
+              shadow-xl
+              sm:p-8
+            "
           >
             {/* ================= EMAIL ================= */}
 
-            <div className="border-b border-black/10 pb-7 dark:border-white/10">
+            <div className="border-b border-black/10 pb-7">
               <div className="mb-5 flex items-center justify-between">
                 <motion.a
                   href={`mailto:${email}`}
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black"
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-black
+                    text-white
+                  "
                   aria-label="Send email"
                 >
                   <Mail className="h-5 w-5" />
@@ -188,7 +303,20 @@ function Contact() {
                   onClick={copyEmail}
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition hover:bg-black hover:text-white dark:border-white/10 dark:hover:bg-white dark:hover:text-black"
+                  className="
+                    flex
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-black/10
+                    text-black
+                    transition
+                    hover:bg-black
+                    hover:text-white
+                  "
                   aria-label="Copy email"
                 >
                   {copied ? (
@@ -199,7 +327,15 @@ function Contact() {
                 </motion.button>
               </div>
 
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/40 dark:text-white/35">
+              <p
+                className="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.25em]
+                  text-black/40
+                "
+              >
                 Email
               </p>
 
@@ -207,18 +343,59 @@ function Contact() {
                 href={`mailto:${email}`}
                 className="group mt-2 flex items-center justify-between gap-3"
               >
-                <span className="break-all text-sm font-semibold transition-opacity duration-300 group-hover:opacity-50 sm:text-base">
+                <span
+                  className="
+                    break-all
+                    text-sm
+                    font-semibold
+                    transition-opacity
+                    duration-300
+                    group-hover:opacity-50
+                    sm:text-base
+                  "
+                >
                   {email}
                 </span>
 
-                <ArrowUpRight className="hidden h-4 w-4 shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block" />
+                <ArrowUpRight
+                  className="
+                    hidden
+                    h-4
+                    w-4
+                    shrink-0
+                    transition-transform
+                    duration-300
+                    group-hover:-translate-y-1
+                    group-hover:translate-x-1
+                    sm:block
+                  "
+                />
               </a>
 
               {/* Email Action */}
 
               <a
                 href={`mailto:${email}`}
-                className="mt-5 inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-300 hover:bg-black hover:text-white dark:border-white/10 dark:hover:bg-white dark:hover:text-black"
+                className="
+                  mt-5
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-black/10
+                  px-4
+                  py-2.5
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.15em]
+                  text-black
+                  transition-all
+                  duration-300
+                  hover:bg-black
+                  hover:text-white
+                "
               >
                 <Mail className="h-3.5 w-3.5" />
                 Send Email
@@ -234,13 +411,31 @@ function Contact() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black"
+                className="
+                  mb-5
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-black
+                  text-white
+                "
                 aria-label="Open WhatsApp"
               >
                 <MessageCircle className="h-5 w-5" />
               </motion.a>
 
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/40 dark:text-white/35">
+              <p
+                className="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.25em]
+                  text-black/40
+                "
+              >
                 WhatsApp
               </p>
 
@@ -252,14 +447,31 @@ function Contact() {
                 rel="noopener noreferrer"
                 className="group mt-2 flex items-center gap-3"
               >
-                <span className="text-base font-semibold transition-opacity duration-300 group-hover:opacity-50">
+                <span
+                  className="
+                    text-base
+                    font-semibold
+                    transition-opacity
+                    duration-300
+                    group-hover:opacity-50
+                  "
+                >
                   +91 7806865023
                 </span>
 
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                <ArrowUpRight
+                  className="
+                    h-4
+                    w-4
+                    transition-transform
+                    duration-300
+                    group-hover:-translate-y-1
+                    group-hover:translate-x-1
+                  "
+                />
               </a>
 
-              <p className="mt-5 max-w-xs text-xs leading-5 text-black/40 dark:text-white/30">
+              <p className="mt-5 max-w-xs text-xs leading-5 text-black/40">
                 Open for creative collaborations, video projects and content
                 opportunities.
               </p>
@@ -277,16 +489,34 @@ function Contact() {
             duration: 0.8,
             delay: 0.4,
           }}
-          className="mt-20 "
+          className="mt-20"
         >
-          <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.15em] text-black/40 dark:text-white/30 sm:flex-row sm:items-center sm:justify-between">
+          <div
+            className="
+              flex
+              flex-col
+              gap-4
+              text-xs
+              uppercase
+              tracking-[0.15em]
+              text-white/30
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+            "
+          >
             <p>© Mohamed Sharuk</p>
 
             <p>Digital Marketer · Content Creator · Video Editor</p>
 
             <a
               href="#home"
-              className="font-bold text-black transition-opacity hover:opacity-50 dark:text-white"
+              className="
+                font-bold
+                text-white
+                transition-opacity
+                hover:opacity-50
+              "
             >
               Back To Top ↑
             </a>

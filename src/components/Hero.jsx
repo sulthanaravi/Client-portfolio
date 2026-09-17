@@ -19,16 +19,17 @@ function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/bg-video/background-poster.webp"
         className="
-    pointer-events-none
-    absolute
-    inset-0
-    z-0
-    h-full
-    w-full
-    object-cover
-  "
+          pointer-events-none
+          absolute
+          inset-0
+          z-0
+          h-full
+          w-full
+          object-cover
+        "
       >
         <source src="/bg-video/background.mp4" type="video/mp4" />
       </video>
@@ -68,17 +69,13 @@ function Hero() {
           justify-center
           px-4
           pt-5
-
           sm:px-6
           sm:pt-6
-
           md:px-8
           md:pt-6
-
           lg:justify-start
           lg:px-10
           lg:pt-7
-
           xl:px-14
           xl:pt-7
         "
@@ -211,17 +208,13 @@ function Hero() {
           px-4
           pb-12
           pt-12
-
           sm:px-6
           sm:pb-14
           sm:pt-14
-
           md:px-8
           md:pb-16
           md:pt-16
-
           lg:px-10
-
           xl:flex-row
           xl:items-center
           xl:justify-center
@@ -234,6 +227,7 @@ function Hero() {
         {/* =================================================
             MOBILE / TABLET PROFILE
         ================================================= */}
+
         <motion.div
           initial={{
             opacity: 0,
@@ -293,7 +287,6 @@ function Hero() {
                 border
                 border-dashed
                 border-white/20
-
                 sm:-inset-5
                 md:-inset-6
               "
@@ -314,7 +307,6 @@ function Hero() {
                 rounded-full
                 border
                 border-white/[0.06]
-
                 sm:-inset-10
                 md:-inset-12
               "
@@ -341,7 +333,6 @@ function Hero() {
                 rounded-full
                 bg-white
                 shadow-[0_0_15px_rgba(255,255,255,0.8)]
-
                 sm:-right-2
                 sm:h-2.5
                 sm:w-2.5
@@ -403,11 +394,9 @@ function Hero() {
                 border-[6px]
                 border-[#0f0f0f]
                 bg-[#0f0f0f]
-
                 sm:h-[175px]
                 sm:w-[175px]
                 sm:border-[7px]
-
                 md:h-[200px]
                 md:w-[200px]
               "
@@ -415,6 +404,10 @@ function Hero() {
               <motion.img
                 src="/images/Profile.jpeg"
                 alt="Mohamed Sharuk"
+                width="200"
+                height="200"
+                loading="eager"
+                fetchPriority="high"
                 animate={{
                   scale: [1, 1.04, 1],
                 }}
@@ -477,6 +470,7 @@ function Hero() {
         {/* =================================================
             DESKTOP PROFILE
         ================================================= */}
+
         <motion.div
           initial={{
             opacity: 0,
@@ -633,8 +627,12 @@ function Hero() {
               "
             >
               <motion.img
-                src="/images/Profile.jpeg"
+                src="/images/Profile.webp"
                 alt="Mohamed Sharuk"
+                width="290"
+                height="290"
+                loading="eager"
+                fetchPriority="high"
                 animate={{
                   scale: [1, 1.035, 1],
                 }}
@@ -687,6 +685,7 @@ function Hero() {
         {/* =================================================
             CONTENT
         ================================================= */}
+
         <div
           className="
             relative
@@ -694,7 +693,6 @@ function Hero() {
             w-full
             max-w-[680px]
             text-center
-
             xl:w-[60%]
             xl:max-w-none
             xl:text-left
@@ -720,9 +718,7 @@ function Hero() {
               items-center
               justify-center
               gap-3
-
               sm:mb-5
-
               xl:justify-start
             "
           >
@@ -732,7 +728,6 @@ function Hero() {
                 w-7
                 shrink-0
                 bg-white/50
-
                 sm:w-10
               "
             />
@@ -744,7 +739,6 @@ function Hero() {
                 uppercase
                 tracking-[0.2em]
                 text-white/60
-
                 sm:text-[9px]
                 sm:tracking-[0.3em]
               "
@@ -776,15 +770,10 @@ function Hero() {
               leading-[0.8]
               tracking-[-0.07em]
               text-white
-
               sm:text-[13vw]
-
               md:text-[11vw]
-
               lg:text-[9vw]
-
               xl:text-[5.3rem]
-
               2xl:text-[6.2rem]
             "
           >
@@ -814,15 +803,10 @@ function Hero() {
               tracking-[-0.07em]
               text-transparent
               [-webkit-text-stroke:1px_white]
-
               sm:text-[13vw]
-
               md:text-[11vw]
-
               lg:text-[9vw]
-
               xl:text-[5.3rem]
-
               2xl:text-[6.2rem]
             "
           >
@@ -853,15 +837,12 @@ function Hero() {
               text-[10px]
               leading-5
               text-white/65
-
               sm:mt-6
               sm:pl-4
               sm:text-sm
               sm:leading-6
-
               md:mt-7
               md:text-base
-
               xl:mx-0
             "
           >
@@ -893,10 +874,8 @@ function Hero() {
               items-stretch
               justify-center
               gap-3
-
               sm:flex-row
               sm:items-center
-
               xl:mx-0
               xl:max-w-none
               xl:justify-start
@@ -926,7 +905,6 @@ function Hero() {
                 duration-300
                 hover:-translate-y-1
                 hover:shadow-[0_12px_30px_rgba(255,255,255,0.15)]
-
                 sm:h-12
                 sm:w-auto
                 sm:min-w-[170px]
@@ -982,7 +960,6 @@ function Hero() {
                 hover:-translate-y-1
                 hover:bg-white
                 hover:text-black
-
                 sm:h-12
                 sm:w-auto
                 sm:min-w-[140px]
