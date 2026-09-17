@@ -831,8 +831,6 @@ function Hero() {
               mx-auto
               mt-5
               max-w-[560px]
-              border-l
-              border-white/25
               pl-3
               text-[10px]
               leading-5
