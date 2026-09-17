@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Play, ExternalLink } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // =====================================================
 // PROJECT DATA
@@ -88,19 +88,23 @@ const driveLinks = {
 };
 function ProjectVideo({ src, className }) {
   const videoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
+
     if (!video) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
       },
       {
-        rootMargin: "200px 0px",
-        threshold: 0.1,
+        rootMargin: "1000px 0px",
+        threshold: 0,
       },
     );
 
@@ -109,27 +113,16 @@ function ProjectVideo({ src, className }) {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isVisible) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isVisible]);
-
   return (
     <video
       ref={videoRef}
-      src={isVisible ? src : undefined}
+      src={shouldLoad ? src : undefined}
       muted
       loop
       playsInline
-      preload="none"
-      onLoadedData={(e) => {
-        e.currentTarget.play().catch(() => {});
+      preload="metadata"
+      onCanPlay={(event) => {
+        event.currentTarget.play().catch(() => {});
       }}
       className={className}
     />
