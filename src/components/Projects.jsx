@@ -86,7 +86,55 @@ const driveLinks = {
   "THEATRICAL MASHUPS":
     "https://drive.google.com/drive/folders/1Tf_CRuOwgs-rhUeG7GJpqrfLKy-nrHtf",
 };
+function ProjectVideo({ src, className }) {
+  const videoRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        rootMargin: "200px 0px",
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isVisible) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isVisible]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={isVisible ? src : undefined}
+      muted
+      loop
+      playsInline
+      preload="none"
+      onLoadedData={(e) => {
+        e.currentTarget.play().catch(() => {});
+      }}
+      className={className}
+    />
+  );
+}
 // =====================================================
 // COMPONENT
 // =====================================================
@@ -508,24 +556,18 @@ function Projects() {
                   "
                 >
                   {/* LOOPING MUTED VIDEO */}
-
-                  <video
+                  <ProjectVideo
                     src={project.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
                     className="
-                      absolute
-                      inset-0
-                      h-full
-                      w-full
-                      object-cover
-                      transition-transform
-                      duration-700
-                      group-hover:scale-105
-                    "
+    absolute
+    inset-0
+    h-full
+    w-full
+    object-cover
+    transition-transform
+    duration-700
+    group-hover:scale-105
+  "
                   />
 
                   {/* SOFT OVERLAY */}
