@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Play, ExternalLink } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 // =====================================================
 // PROJECT DATA
@@ -88,22 +88,18 @@ const driveLinks = {
 };
 function ProjectVideo({ src, className }) {
   const videoRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-
     if (!video) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
+        setIsVisible(entry.isIntersecting);
       },
       {
-        rootMargin: "150px 0px",
+        rootMargin: "200px 0px",
         threshold: 0.1,
       },
     );
@@ -113,16 +109,27 @@ function ProjectVideo({ src, className }) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isVisible) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isVisible]);
+
   return (
     <video
       ref={videoRef}
-      src={shouldLoad ? src : undefined}
+      src={isVisible ? src : undefined}
       muted
       loop
       playsInline
-      preload="auto"
-      onCanPlay={(event) => {
-        event.currentTarget.play().catch(() => {});
+      preload="none"
+      onLoadedData={(e) => {
+        e.currentTarget.play().catch(() => {});
       }}
       className={className}
     />
@@ -549,18 +556,24 @@ function Projects() {
                   "
                 >
                   {/* LOOPING MUTED VIDEO */}
-                  <ProjectVideo
+
+                  <video
                     src={project.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
                     className="
-    absolute
-    inset-0
-    h-full
-    w-full
-    object-cover
-    transition-transform
-    duration-700
-    group-hover:scale-105
-  "
+                      absolute
+                      inset-0
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
                   />
 
                   {/* SOFT OVERLAY */}
