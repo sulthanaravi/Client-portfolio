@@ -627,7 +627,7 @@ function Hero() {
               "
             >
               <motion.img
-                src="/images/Profile.webp"
+                src="/images/Profile.jpg"
                 alt="Mohamed Sharuk"
                 width="290"
                 height="290"
