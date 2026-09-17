@@ -77,14 +77,12 @@ function Navbar() {
             justify-center
             rounded-full
 
-            text-black
-            dark:text-white
+            text-white
 
             transition-all
             duration-300
 
             hover:bg-black/10
-            dark:hover:bg-white/10
           "
         >
           <AnimatePresence mode="wait">

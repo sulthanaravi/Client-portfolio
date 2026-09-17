@@ -93,7 +93,6 @@ const driveLinks = {
 
 function ProjectVideo({ src, className }) {
   const videoRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -103,16 +102,14 @@ function ProjectVideo({ src, className }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoad(true);
-
-          // Stop observing after the video starts loading.
-          observer.disconnect();
+          video.play().catch(() => {});
+        } else {
+          video.pause();
         }
       },
       {
-        // Start loading before the card reaches the screen.
         rootMargin: "400px 0px",
-        threshold: 0,
+        threshold: 0.01,
       },
     );
 
@@ -120,20 +117,20 @@ function ProjectVideo({ src, className }) {
 
     return () => {
       observer.disconnect();
+      video.pause();
     };
   }, []);
 
   return (
     <video
       ref={videoRef}
-      src={shouldLoad ? src : undefined}
+      src={src}
       muted
+      autoPlay
       loop
       playsInline
-      preload={shouldLoad ? "auto" : "none"}
-      onCanPlay={(event) => {
-        event.currentTarget.play().catch(() => {});
-      }}
+      webkit-playsinline="true"
+      preload="none"
       className={className}
     />
   );
