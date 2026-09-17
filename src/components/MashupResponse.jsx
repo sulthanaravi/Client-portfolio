@@ -153,7 +153,7 @@ function TheatreResponse() {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               className="
                 absolute
                 inset-0
@@ -493,7 +493,7 @@ function TheatreResponse() {
                   controls
                   autoPlay
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   className="
                     max-h-[calc(90vh-90px)]
                     w-full

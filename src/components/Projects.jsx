@@ -515,7 +515,7 @@ function Projects() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     className="
                       absolute
                       inset-0
@@ -982,7 +982,7 @@ function Projects() {
                     controls
                     autoPlay
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     className="
                       block
                       h-full
