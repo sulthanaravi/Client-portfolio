@@ -153,7 +153,7 @@ function TheatreResponse() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               className="
                 absolute
                 inset-0

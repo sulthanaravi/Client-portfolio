@@ -515,7 +515,7 @@ function Projects() {
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     className="
                       absolute
                       inset-0
