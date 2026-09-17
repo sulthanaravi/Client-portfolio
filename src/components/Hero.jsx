@@ -402,7 +402,7 @@ function Hero() {
               "
             >
               <motion.img
-                src="/images/Profile.jpeg"
+                src="/images/Profile.jpg"
                 alt="Mohamed Sharuk"
                 width="200"
                 height="200"

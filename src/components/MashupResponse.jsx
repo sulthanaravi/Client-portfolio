@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const theatreResponse = {
   title: "Theatrical Response",
   category: "THEATRE RESPONSE",
-  video: "/projects/theatre response.MOV",
+  video: "/projects/theatre response.mp4",
   driveLink:
     " https://drive.google.com/drive/folders/1HNE3cl7pHOPwAqwPklc2WNGg8O9qlz6_",
 };
