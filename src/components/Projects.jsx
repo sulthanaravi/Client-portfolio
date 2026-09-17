@@ -103,8 +103,8 @@ function ProjectVideo({ src, className }) {
         }
       },
       {
-        rootMargin: "1000px 0px",
-        threshold: 0,
+        rootMargin: "150px 0px",
+        threshold: 0.1,
       },
     );
 
@@ -120,7 +120,7 @@ function ProjectVideo({ src, className }) {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       onCanPlay={(event) => {
         event.currentTarget.play().catch(() => {});
       }}
