@@ -31,7 +31,7 @@ function Hero() {
           object-cover
         "
       >
-        <source src="/bg-video/background.mp4" type="video/mp4" />
+        <source src="/bg-video/background-video.mp4" type="video/mp4" />
       </video>
 
       {/* VIDEO OVERLAY */}
